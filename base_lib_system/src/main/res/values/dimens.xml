@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="historyscore_tb">10dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">0dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <!-- Calendar Time line -->
+    <dimen name="calendar_time_line_margin">10dp</dimen>
+    <!-- QRCode -->
+    <dimen name="viewfinder_frame_corner_width">5dip</dimen>
+    <!-- cusHeadView -->
+    <dimen name="chHead_text_drawable_size">20dip</dimen>
+    <dimen name="CusProgress_min_size">200dip</dimen>
+
+    <dimen name="radio_button_plus_size">25dip</dimen>
+    <dimen name="default_padding_top">8dp</dimen>
+    <dimen name="default_padding_bottom">8dp</dimen>
+    <dimen name="inner_padding_left">0dp</dimen>
+    <dimen name="inner_padding_right">0dp</dimen>
+    <dimen name="floating_label_text_size">12sp</dimen>
+    <dimen name="bottom_text_size">12sp</dimen>
+    <dimen name="inner_components_spacing">8dp</dimen>
+    <dimen name="bottom_ellipsis_height">4dp</dimen>
+    <dimen name="common_head_height">55dip</dimen>
+    <dimen name="common_head_padding_left">0dip</dimen>
+    <dimen name="common_head_leftImgPadding">10dip</dimen>
+    <dimen name="common_head_rightImgPadding">10dip</dimen>
+    <dimen name="common_head_title_size">18sp</dimen>
+    <dimen name="common_head_text_size">14sp</dimen>
+    <dimen name="prb_symbolic_tick_default_text_size">15sp</dimen>
+    <dimen name="prb_drawable_tick_default_spacing">1dp</dimen>
+</resources>

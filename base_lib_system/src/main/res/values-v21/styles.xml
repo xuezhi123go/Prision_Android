@@ -1,0 +1,25 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <style name="album_head_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/album_head_bg_color</item>
+        <item name="chHead_title_padding_left">@dimen/common_head_padding_left</item>
+        <item name="chHead_titleColor">@android:color/white</item>
+        <item name="chHead_leftImgPadding">@dimen/common_head_leftImgPadding</item>
+        <item name="chHead_rightImgPadding">@dimen/common_head_rightImgPadding</item>
+        <item name="chHead_leftImg">@drawable/ic_menu_backward</item>
+        <item name="chHead_title_size">@dimen/common_head_title_size</item>
+        <item name="chHead_text_size">@dimen/common_head_text_size</item>
+        <item name="chHead_textColor">@android:color/white</item>
+        <item name="chHead_imgClickEffect">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="chHead_textClickEffect">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+    <style name="album_btn_selector_style">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+    <style name="album_click_light_selector_style">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+</resources>

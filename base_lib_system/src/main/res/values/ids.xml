@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="gridview" type="id"/>
+    <item name="webview" type="id"/>
+    <item name="scrollview" type="id"/>
+
+    <!-- qrcode Messages IDs -->
+    <item name="auto_focus" type="id">0x001</item>
+    <item name="decode" type="id">0x002</item>
+    <item name="decode_failed" type="id">0x003</item>
+    <item name="decode_succeeded" type="id">0x004</item>
+    <item name="encode_failed" type="id">0x005</item>
+    <item name="encode_succeeded" type="id">0x006</item>
+    <item name="launch_product_query" type="id">0x007</item>
+    <item name="quit" type="id">0x008</item>
+    <item name="restart_preview" type="id">0x009</item>
+    <item name="return_scan_result" type="id">0x010</item>
+    <item name="search_book_contents_failed" type="id">0x011</item>
+    <item name="search_book_contents_succeeded" type="id">0x012</item>
+
+</resources>

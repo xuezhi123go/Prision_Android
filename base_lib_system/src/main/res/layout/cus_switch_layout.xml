@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cus_switch_layout_rl_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/cus_switch_left_shape"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1.0" >
+
+        <TextView
+            android:id="@+id/cus_switch_layout_tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:minHeight="40dip"
+            android:minWidth="50dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/cus_switch_layout_iv_left_slip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cus_switch_layout_tv_left"
+            android:layout_alignLeft="@id/cus_switch_layout_tv_left"
+            android:layout_alignRight="@id/cus_switch_layout_tv_left"
+            android:layout_alignTop="@id/cus_switch_layout_tv_left"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="3dip"
+            android:layout_marginTop="3dip"
+            android:background="@drawable/cus_switch_left_btn_shape"
+            android:scaleType="fitXY" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1.0" >
+
+        <TextView
+            android:id="@+id/cus_switch_layout_tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:minHeight="40dip"
+            android:minWidth="50dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/cus_switch_layout_iv_right_slip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cus_switch_layout_tv_right"
+            android:layout_alignLeft="@id/cus_switch_layout_tv_right"
+            android:layout_alignRight="@id/cus_switch_layout_tv_right"
+            android:layout_alignTop="@id/cus_switch_layout_tv_right"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="3dip"
+            android:background="@drawable/cus_switch_right_btn_shape"
+            android:scaleType="fitXY"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</LinearLayout>

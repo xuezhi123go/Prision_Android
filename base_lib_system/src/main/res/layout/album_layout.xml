@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mAttr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+    <com.starlight.mobile.android.lib.view.CusHeadView
+        android:id="@+id/album_layout_ch_head"
+        mAttr:chHead_title="@string/album_photos"
+        mAttr:chHead_rightText="@string/album_finish"
+        style="@style/album_head_style"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/album_layout_rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/album_layout_ch_head"
+        android:background="@android:color/black"
+        android:scrollbars="vertical" />
+
+    <FrameLayout
+        android:id="@+id/album_layout_fl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#cc2e3334"
+        >
+
+        <com.starlight.mobile.android.lib.view.CusTextView
+            android:id="@+id/album_layout_tv_album_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:drawablePadding="8dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:paddingTop="15dip"
+            android:paddingBottom="15dip"
+            android:singleLine="true"
+            android:maxEms="15"
+            android:ellipsize="end"
+            android:clickable="true"
+            android:onClick="onClickListener"
+            android:drawableRight="@drawable/ic_right_select"
+            android:gravity="center_vertical"
+            android:text="@string/album_all_photos"
+            style="@style/album_btn_selector_style"
+            mAttr:ctv_rightImg_height="12dip"
+            mAttr:ctv_rightImg_width="12dip"
+            android:textColor="@android:color/white" />
+        <TextView
+            android:id="@+id/album_layout_tv_album_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:paddingLeft="20dip"
+            android:ellipsize="end"
+            android:paddingRight="20dip"
+            android:paddingTop="15dip"
+            android:singleLine="true"
+            android:enabled="false"
+            android:paddingBottom="15dip"
+            android:onClick="onClickListener"
+            style="@style/album_btn_selector_style"
+            android:gravity="center_vertical"
+            android:text="@string/album_preview"
+            android:textColor="@android:color/white"
+            />
+    </FrameLayout>
+
+</RelativeLayout>

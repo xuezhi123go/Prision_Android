@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CusSwitch_Attr">
+        <attr name="cswitch_left_text" format="reference" />
+        <attr name="cswitch_right_text" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <!-- title是否全部展开 填充整个宽度 -->
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+        <attr name="pstsTextSelectedColor" format="color" />
+        <attr name="pstsTextUnSelectedColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="ViewfinderView">
+
+        <!-- 边框角颜色以及扫描颜色 -->
+        <attr name="viewfinder_frame_color" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="RadioButtonPlus">
+        <attr name="radio_left_height" format="dimension" />
+        <attr name="radio_left_width" format="dimension" />
+        <attr name="radio_right_height" format="dimension" />
+        <attr name="radio_right_width" format="dimension" />
+        <attr name="radio_top_height" format="dimension" />
+        <attr name="radio_top_width" format="dimension" />
+        <attr name="radio_bottom_height" format="dimension" />
+        <attr name="radio_bottom_width" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="CusHeadView_Attrs">
+        <attr name="chHead_title" format="reference" />
+        <attr name="chHead_title_size" format="dimension" />
+        <!--左右文字大小-->
+        <attr name="chHead_text_size" format="dimension" />
+
+        <attr name="chHead_title_padding_left" format="dimension" />
+        <attr name="chHead_leftText" format="reference" />
+        <!-- 左文字的左图标 -->
+        <attr name="chHead_leftTextImg" format="reference" />
+        <attr name="chHead_rightText" format="reference" />
+        <!-- 右文字的右图标 -->
+        <attr name="chHead_rightTextImg" format="reference" />
+        <attr name="chHead_leftImg" format="reference" />
+        <attr name="chHead_rightImg" format="reference" />
+        <attr name="chHead_titleColor" format="reference" />
+        <attr name="chHead_textColor" format="reference" />
+        <!--左右图标或文字的背景点击效果-->
+        <attr name="chHead_imgClickEffect" format="reference" />
+        <attr name="chHead_textClickEffect" format="reference" />
+        <attr name="chHead_leftImgPadding" format="dimension" />
+        <attr name="chHead_rightImgPadding" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="PullToRefresh">
+        <!-- Drawable to use as Loading Indicator in the Header View. Overrides value set in ptrDrawable. -->
+        <attr name="ptrDrawableStart" format="reference" />
+
+        <!-- A drawable to use as the background of the Refreshable View -->
+        <attr name="ptrRefreshableViewBackground" format="reference|color" />
+
+        <!-- A drawable to use as the background of the Header Loading Views -->
+        <attr name="ptrHeaderBackground" format="reference|color" />
+        <!-- A drawable to use as the background of the Footer Loading Views -->
+        <attr name="ptrFootBackground" format="reference|color" />
+
+        <!-- Text Color of the Header and Footer Loading Views -->
+        <attr name="ptrHeaderTextColor" format="reference|color" />
+        <attr name="ptrFootTextColor" format="reference|color" />
+
+        <!-- Text Color of the Header and Footer Loading Views Sub Header -->
+        <attr name="ptrHeaderSubTextColor" format="reference|color" />
+
+        <!-- Mode of Pull-to-Refresh that should be used -->
+        <attr name="ptrMode">
+            <flag name="disabled" value="0x0" />
+            <flag name="pullFromStart" value="0x1" />
+            <flag name="pullFromEnd" value="0x2" />
+            <flag name="both" value="0x3" />
+            <flag name="manualOnly" value="0x4" />
+            <flag name="pullFromStartOnlyProgress" value="0x5" />
+
+            <!-- These last two are depreacted -->
+            <flag name="pullDownFromTop" value="0x1" />
+            <flag name="pullUpFromBottom" value="0x2" />
+        </attr>
+
+        <!-- Whether the Indicator overlay(s) should be used -->
+        <attr name="ptrShowIndicator" format="reference|boolean" />
+
+        <!-- Drawable to use as Loading Indicator. Changes both Header and Footer. -->
+        <attr name="ptrDrawable" format="reference" />
+
+        <!-- Drawable to use as Loading Indicator in the Header View. Overrides value set in ptrDrawable. -->
+        <attr name="ptrHeadDrawableDown" format="reference" />
+        <attr name="ptrHeadDrawableUp" format="reference" />
+        <!-- Drawable to use as Loading Indicator in the Footer View. Overrides value set in ptrDrawable. -->
+        <attr name="ptrDrawableEnd" format="reference" />
+        <!-- 进度条动画 -->
+        <attr name="ptrHeadProgressAnim" format="reference" />
+        <attr name="ptrFootProgressAnim" format="reference" />
+
+        <!-- Whether Android's built-in Over Scroll should be utilised for Pull-to-Refresh. -->
+        <attr name="ptrOverScroll" format="reference|boolean" />
+
+        <!-- Base text color, typeface, size, and style for Header and Footer Loading Views -->
+        <attr name="ptrHeaderTextAppearance" format="reference" />
+
+        <!-- Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header -->
+        <attr name="ptrSubHeaderTextAppearance" format="reference" />
+
+        <!-- Style of Animation should be used displayed when pulling. -->
+        <attr name="ptrAnimationStyle">
+            <flag name="rotate" value="0x0" />
+            <flag name="flip" value="0x1" />
+        </attr>
+
+        <!-- Whether the user can scroll while the View is Refreshing -->
+        <attr name="ptrScrollingWhileRefreshingEnabled" format="reference|boolean" />
+
+        <!--
+        	Whether PullToRefreshListView has it's extras enabled. This allows the user to be 
+        	able to scroll while refreshing, and behaves better. It acheives this by adding
+        	Header and/or Footer Views to the ListView.
+        -->
+        <attr name="ptrListViewExtrasEnabled" format="reference|boolean" />
+
+        <!--
+        	Whether the Drawable should be continually rotated as you pull. This only
+        	takes effect when using the 'Rotate' Animation Style.
+        -->
+        <attr name="ptrRotateDrawableWhilePulling" format="reference|boolean" />
+
+        <!-- BELOW HERE ARE DEPRECEATED. DO NOT USE. -->
+        <attr name="ptrAdapterViewBackground" format="reference|color" />
+        <!-- 拉的时候提示 -->
+        <attr name="ptrHeader_pull_label" format="reference" />
+        <attr name="ptrHeader_release_label" format="reference" />
+        <attr name="ptrHeader_refreshing_label" format="reference" />
+        <attr name="ptrHeader_refresh_completed_label" format="reference" />
+        <attr name="ptrHeader_refresh_completed_leftImg" format="reference" />
+        <!-- 上拉时候的提示 -->
+        <attr name="ptrFoot_refreshing_label" format="reference" />
+        <attr name="ptrDrawableTop" format="reference" />
+        <attr name="ptrDrawableBottom" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomPicker">
+        <attr name="timePicker_textSize" format="dimension"></attr>
+        <attr name="timePicker_itemWidth" format="dimension"></attr>
+        <attr name="timePicker_largeItemWidth" format="dimension"></attr>
+        <attr name="timePicker_maxHour" format="integer"></attr>
+        <attr name="timePicker_maxSecond" format="integer"></attr>
+    </declare-styleable>
+    <declare-styleable name="CusTextView_Attrs">
+        <attr name="ctv_leftImg_width" format="dimension" />
+        <attr name="ctv_leftImg_height" format="dimension" />
+        <attr name="ctv_rightImg_width" format="dimension" />
+        <attr name="ctv_rightImg_height" format="dimension" />
+        <attr name="ctv_topImg_width" format="dimension" />
+        <attr name="ctv_topImg_height" format="dimension" />
+        <attr name="ctv_bottomImg_width" format="dimension" />
+        <attr name="ctv_bottomImg_height" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="MaterialEditText">
+        <!-- The base color of the line and the texts. Default is black. -->
+        <attr name="met_baseColor" format="color" />
+        <!-- The highlight color of the line, and the floating label if the highlightFloatingLabel is true. -->
+        <attr name="met_primaryColor" format="color" />
+        <!-- How the floating label should be shown. Default is none -->
+        <attr name="met_floatingLabel">
+            <enum name="none" value="0" />
+            <enum name="normal" value="1" />
+            <enum name="highlight" value="2" />
+        </attr>
+        <!-- The color for when something is wrong.(e.g. exceeding max characters) -->
+        <attr name="met_errorColor" format="color" />
+        <!-- Min characters count limit. 0 means no limit. -->
+        <attr name="met_minCharacters" format="integer" />
+        <!-- max Characters count limit. 0 means no limit. -->
+        <attr name="met_maxCharacters" format="integer" />
+        <!-- Whether to show the bottom ellipsis in singleLine mode -->
+        <attr name="met_singleLineEllipsis" format="boolean" />
+        <!-- Reserved bottom text lines count, no matter if there is some helper/error text. -->
+        <attr name="met_minBottomTextLines" format="integer" />
+        <!-- Helper text at the bottom -->
+        <attr name="met_helperText" format="string" />
+        <!-- Helper text color -->
+        <attr name="met_helperTextColor" format="color" />
+        <!-- Font of the paint used to draw accent texts -->
+        <attr name="met_accentTypeface" format="string" />
+        <!-- Font used on view -->
+        <attr name="met_typeface" format="string" />
+        <!-- Custom float label text -->
+        <attr name="met_floatingLabelText" format="string" />
+        <!-- spacing between the main text and the floating label -->
+        <attr name="met_floatingLabelPadding" format="dimension" />
+        <!-- Hide underline -->
+        <attr name="met_hideUnderline" format="boolean" />
+        <!-- Underline's color -->
+        <attr name="met_underlineColor" format="color" />
+        <!-- Auto validate -->
+        <attr name="met_autoValidate" format="boolean" />
+        <!-- Left icon -->
+        <attr name="met_iconLeft" format="reference" />
+        <!-- Right icon -->
+        <attr name="met_iconRight" format="reference" />
+        <!-- Padding between icon(s) and the main area. 8dp by default. -->
+        <attr name="met_iconPadding" format="dimension" />
+        <!-- Clear button -->
+        <attr name="met_clearButton" format="boolean" />
+        <!-- The floating label's text size. 12sp by default. -->
+        <attr name="met_floatingLabelTextSize" format="dimension" />
+        <!-- The floating label's text color. -1 by default. -->
+        <attr name="met_floatingLabelTextColor" format="color" />
+        <!-- The bottom texts' size. 12sp by default. -->
+        <attr name="met_bottomTextSize" format="dimension" />
+        <!-- Always show the floating label, instead of animating it in/out. False by default. -->
+        <attr name="met_floatingLabelAlwaysShown" format="boolean" />
+        <!-- Always show the helper text, no matter if the edit text is focused. False by default. -->
+        <attr name="met_helperTextAlwaysShown" format="boolean" />
+        <!-- Whether use animation to show/hide the floating label. True by default. -->
+        <attr name="met_floatingLabelAnimating" format="boolean"/>
+        <!-- Text color -->
+        <attr name="met_textColor" format="color" />
+        <!-- Hint Text Color -->
+        <attr name="met_textColorHint" format="color" />
+        <!-- Auto validate on focus lost. False by default. -->
+        <attr name="met_validateOnFocusLost" format="boolean"/>
+        <!-- Whether check the characters count at the beginning it's shown. True by default. -->
+        <attr name="met_checkCharactersCountAtBeginning" format="boolean"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="ProperRatingBar" >
+
+        <!-- Total number of ticks to show. Default is '5' -->
+        <attr name="prb_totalTicks" format="integer" />
+
+        <!-- Use this to set rating from xml. Default is '3' -->
+        <attr name="prb_defaultRating" format="float" />
+
+        <!-- If set to 'true' - use will be able to change rating by clicking. Default is 'false' -->
+        <attr name="prb_clickable" format="boolean" />
+
+
+        <!-- Symbol to be used as a tick. Default is '$' -->
+        <attr name="prb_symbolicTick" format="string" />
+
+        <!-- Text size of symbolic tick. Default is '15sp' -->
+        <attr name="android:textSize" />
+
+        <!-- Text style of symbolic tick. Possible: 'bold', 'italic', 'normal'. Default is 'normal'. -->
+        <attr name="android:textStyle" />
+
+        <!-- Color of symbolic tick that is not selected (not rated). Default is '#FF000000' (black). -->
+        <attr name="prb_symbolicTickNormalColor" format="reference|color" />
+
+        <!-- Color of symbolic tick that is selected (rated). Default is '#FF888888' (gray). -->
+        <attr name="prb_symbolicTickSelectedColor" format="reference|color" />
+
+
+        <!-- Drawable resource to use as a tick that is not selected (not rated). No default value. -->
+        <attr name="prb_tickNormalDrawable" format="reference" />
+
+        <!-- Drawable resource to use as a tick that is selected (rated). No default value. -->
+        <attr name="prb_tickSelectedDrawable" format="reference" />
+        <attr name="prb_tickDrawable_width" format="dimension" />
+        <attr name="prb_tickDrawable_height" format="dimension" />
+        <attr name="prb_isHalf_stepSize" format="boolean"/>
+
+        <!-- Margin to be applied to tick drawables. Only applies to drawable-type ticks. Default is '1dp' (gray). -->
+        <attr name="prb_tickSpacing" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="WaitingDots">
+        <attr name="dotsColor" format="color" />
+        <attr name="period" format="integer" />
+        <attr name="jumpHeight" format="integer" />
+        <attr name="autoplay" format="boolean" />
+    </declare-styleable>
+    <!--虚线-->
+    <declare-styleable name="DottedLine">
+        <attr name="lineColor" format="reference"/>
+    </declare-styleable>
+
+    <item name="prb_child_tag_id" type="id" />
+</resources>

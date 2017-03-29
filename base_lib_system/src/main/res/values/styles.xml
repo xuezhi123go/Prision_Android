@@ -1,0 +1,71 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="CusProgress_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CusPhotoFromDialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- <item name="android:backgroundDimAmount">0.6</item> -->
+    </style>
+
+    <style name="photo_from_dialog_btn_style" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dip</item>
+        <item name="android:textColor">#17a2e2</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@drawable/photo_from_dialog_btn_selector</item>
+    </style>
+
+    <style name="cusDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/cus_dialog_shape</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+    <style name="anim_popup_dir">
+        <item name="android:windowEnterAnimation">@anim/slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_to_bottom</item>
+    </style>
+    <style name="album_head_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/album_head_bg_color</item>
+        <item name="chHead_title_padding_left">@dimen/common_head_padding_left</item>
+        <item name="chHead_titleColor">@android:color/white</item>
+        <item name="chHead_leftImgPadding">@dimen/common_head_leftImgPadding</item>
+        <item name="chHead_leftImg">@drawable/ic_menu_backward</item>
+        <item name="chHead_title_size">@dimen/common_head_title_size</item>
+        <item name="chHead_text_size">@dimen/common_head_text_size</item>
+        <item name="chHead_textColor">@android:color/white</item>
+        <item name="chHead_imgClickEffect">@drawable/album_btn_selector</item>
+        <item name="chHead_textClickEffect">@drawable/album_btn_selector</item>
+    </style>
+    <style name="album_btn_selector_style">
+        <item name="android:background">@drawable/album_btn_selector</item>
+    </style>
+    <style name="album_click_light_selector_style">
+        <item name="android:background">@drawable/album_click_light_selector</item>
+    </style>
+    <style name="AlbumTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimaryDark">@color/album_head_bg_color</item>
+        <item name="android:textColorPrimary">@color/album_head_bg_color</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+</resources>

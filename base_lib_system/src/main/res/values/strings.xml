@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="app_name">base_lib_system</string>
+    <string name="empty"></string>
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="album_all_photos">All Photos</string>
+    <string name="album_preview">Preview</string>
+    <string name="album_photos">Photos</string>
+    <string name="album_pictures">pictures</string>
+    <string name="album_picture">picture</string>
+    <string name="album_loading">Loading</string>
+    <string name="album_cutting">Please Waiting</string>
+    <string name="album_no_sd_card">No SD card</string>
+    <string name="album_no_photo">No Photo</string>
+    <string name="album_finish">Finish</string>
+    <string name="album_select">Select</string>
+    <string name="album_up_to">Up to</string>
+    <string name="lib_confirm">Confirm</string>
+    <string name="prb_default_symbolic_string">$</string>
+
+</resources>
