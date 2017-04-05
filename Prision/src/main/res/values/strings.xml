@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Prision_Android</string>
+    <!--common-->
+    <string name="please_input">请输入</string>
+    <!--登录-->
+    <string name="login">登录</string>
+    <string name="please_input_user_infor">请输入用户信息</string>
+    <string name="account">帐号</string>
+    <string name="password">密码</string>
+
 </resources>

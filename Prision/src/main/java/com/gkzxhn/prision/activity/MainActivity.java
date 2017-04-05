@@ -1,7 +1,9 @@
-package com.gkzxhn.prision;
+package com.gkzxhn.prision.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.gkzxhn.prision.R;
 
 public class MainActivity extends AppCompatActivity {
 

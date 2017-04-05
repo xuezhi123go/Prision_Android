@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/common_bg_color"
+    xmlns:mAttr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.starlight.mobile.android.lib.view.CusHeadView
+        style="@style/common_head_blue_style"
+        mAttr:chHead_title="@string/alter_password"
+        mAttr:chHead_title_padding_left="0dip"
+        />
+    <TextView
+        android:id="@+id/loign_layout_tv_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:text="@string/please_input_user_infor"
+        android:textSize="14sp"
+        android:textColor="@color/common_gray_title_color"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/loign_layout_et_username"
+        style="@style/login_edit_style"
+        android:layout_marginTop="10dp"
+        android:hint="@string/account" />
+
+    <EditText
+        android:id="@+id/loign_layout_et_password"
+        style="@style/login_edit_style"
+        android:layout_marginTop="1dp"
+        android:hint="@string/password"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/loign_layout_btn_login"
+        android:text="@string/login"
+        android:background="@drawable/common_blue_btn_selector"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dip"
+        android:textSize="18sp"
+        android:onClick="onClickListener"
+        android:layout_marginRight="20dip"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dip"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

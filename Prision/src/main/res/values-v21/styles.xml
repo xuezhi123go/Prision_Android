@@ -1,0 +1,18 @@
+<resources>
+    <style name="common_head_blue_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/common_blue</item>
+        <item name="chHead_title_padding_left">@dimen/common_head_leftImgPadding</item>
+        <item name="chHead_titleColor">@android:color/white</item>
+        <item name="chHead_leftImgPadding">10dip</item>
+        <item name="chHead_rightImgPadding">10dip</item>
+        <item name="chHead_title_size">@dimen/common_head_title_size</item>
+        <item name="chHead_text_size">@dimen/common_head_text_size</item>
+        <item name="chHead_textColor">@android:color/white</item>
+        <item name="chHead_imgClickEffect">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="chHead_textClickEffect">?android:attr/selectableItemBackgroundBorderless</item>
+
+    </style>
+
+</resources>
