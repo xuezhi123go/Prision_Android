@@ -7,5 +7,7 @@
     <string name="please_input_user_infor">请输入用户信息</string>
     <string name="account">帐号</string>
     <string name="password">密码</string>
-
+    <string name="app_company_name">国科政信（北京）股份有限公司</string>
+    <string name="app_copy_rights">copyright©2006-2015.All right reserved</string>
+    <string name="app_v">V </string>
 </resources>
