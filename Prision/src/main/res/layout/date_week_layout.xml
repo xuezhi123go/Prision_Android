@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:paddingTop="10dip"
+    android:paddingBottom="10dip"
+    android:background="@color/common_bg_color"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        style="@style/date_week_style"
+        android:text="@string/sunday"
+        />
+    <TextView
+        android:text="@string/monday"
+        style="@style/date_week_style"
+        />
+    <TextView
+        android:text="@string/thesday"
+        style="@style/date_week_style"
+        />
+    <TextView
+        android:text="@string/wednesday"
+        style="@style/date_week_style"
+        />
+    <TextView
+        android:text="@string/thursday"
+        style="@style/date_week_style"
+        />
+    <TextView
+        android:text="@string/friday"
+        style="@style/date_week_style"
+        />
+    <TextView
+        android:text="@string/saturday"
+        style="@style/date_week_style"
+        />
+</LinearLayout>

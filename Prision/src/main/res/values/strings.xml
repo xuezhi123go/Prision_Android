@@ -2,6 +2,7 @@
     <string name="app_name">Prision_Android</string>
     <!--common-->
     <string name="please_input">请输入</string>
+    <string name="no_data">暂无数据</string>
     <!--登录-->
     <string name="login">登录</string>
     <string name="please_input_user_infor">请输入用户信息</string>
@@ -10,4 +11,16 @@
     <string name="app_company_name">国科政信（北京）股份有限公司</string>
     <string name="app_copy_rights">copyright©2006-2015.All right reserved</string>
     <string name="app_v">V </string>
+    <!--会见列表-->
+    <string name="meeting_list">会见列表</string>
+    <string name="sunday">日</string>
+    <string name="monday">一</string>
+    <string name="thesday">二</string>
+    <string name="wednesday">三</string>
+    <string name="thursday">四</string>
+    <string name="friday">五</string>
+    <string name="saturday">六</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
 </resources>

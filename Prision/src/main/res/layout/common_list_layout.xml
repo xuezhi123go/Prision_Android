@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/common_bg_color"
+    android:id="@+id/common_list_layout_fl_root"
+    android:layout_height="match_parent">
+    <include layout="@layout/i_common_loading_layout"/>
+    <include layout="@layout/i_common_no_data_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+    <com.starlight.mobile.android.lib.view.CusSwipeRefreshLayout
+        android:id="@+id/common_list_layout_swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/common_list_layout_rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            />
+    </com.starlight.mobile.android.lib.view.CusSwipeRefreshLayout>
+
+</FrameLayout>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
     <com.starlight.mobile.android.lib.view.CusHeadView
         style="@style/common_head_blue_style"
-        mAttr:chHead_title="@string/alter_password"
+        mAttr:chHead_title="@string/login"
         mAttr:chHead_title_padding_left="0dip"
         />
     <TextView
