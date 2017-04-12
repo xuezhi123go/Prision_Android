@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/common_bg_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/end_setting"
+        android:onClick="onClickListener"
+        android:padding="15dip"
+        android:drawableRight="@mipmap/ic_right"
+        android:background="@android:color/white"
+        android:id="@+id/setting_layout_tv_end_setting"
+        android:clickable="true"
+        android:textSize="20dp"
+        android:textColor="@drawable/black_blue_text_selector"
+        />
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="@color/common_line_color"
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/setting_layout_tv_update_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:textSize="20sp"
+            android:layout_marginRight="40dip"
+            android:textColor="@color/common_gray_title_color"
+            />
+        <TextView
+            android:id="@+id/setting_layout_tv_update"
+            android:clickable="true"
+            android:textColor="@drawable/black_blue_text_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dip"
+            android:onClick="onClickListener"
+            android:drawableRight="@mipmap/ic_right"
+            android:textSize="20sp"
+            android:text="@string/check_update"
+            />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/setting_layout_tv_logout"
+        android:clickable="true"
+        android:onClick="onClickListener"
+        android:drawableRight="@mipmap/ic_right"
+        android:background="@android:color/white"
+        android:textColor="@drawable/black_blue_text_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dip"
+        android:textSize="20sp"
+        android:text="@string/logout"
+        />
+
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="@color/common_line_color"
+        />
+
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="@color/common_line_color"
+        />
+
+</LinearLayout>

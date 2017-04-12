@@ -14,4 +14,10 @@ public class CallUserActivity extends SuperActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.call_user_layout);
     }
+    public void openVConfVideoUI(){
+
+    }
+    public void stopVConfVideo(){
+
+    }
 }

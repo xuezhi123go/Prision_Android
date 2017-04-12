@@ -1,8 +1,19 @@
 <resources>
     <string name="app_name">Prision_Android</string>
+    <!--覆盖类库中的string-->
+    <string name="take_photo">拍照</string>
+    <string name="album">相册</string>
+    <string name="cancel">取消</string>
     <!--common-->
     <string name="please_input">请输入</string>
     <string name="no_data">暂无数据</string>
+    <string name="please_waiting">请稍候...</string>
+    <string name="unexpected_errors">服务不可用，请稍后再试</string>
+    <string name="user_not_authorized">登录已失效，请重新登录</string>
+    <string name="request_timeout_with_try">请求超时，请重试</string>
+    <string name="service_not_available">服务不可用，请稍后再试</string>
+    <string name="not_available_network_hint">当前网络不可用，请检查网络设置</string>
+
     <!--登录-->
     <string name="login">登录</string>
     <string name="please_input_user_infor">请输入用户信息</string>
@@ -11,6 +22,9 @@
     <string name="app_company_name">国科政信（北京）股份有限公司</string>
     <string name="app_copy_rights">copyright©2006-2015.All right reserved</string>
     <string name="app_v">V </string>
+    <string name="login_failed">登录失败，请稍后再试</string>
+    <string name="login_exception_retry">登录异常，请稍后再试</string>
+
     <!--会见列表-->
     <string name="meeting_list">会见列表</string>
     <string name="sunday">日</string>
@@ -27,4 +41,108 @@
     <string name="remote_interview">远程会见</string>
     <string name="meeting_notice"><![CDATA[注意：\n        请确保视频内都是您的亲人，不是请及时告知狱警。\n        请注意通话不涉及犯罪、国家机密等内容，否则您将失去并可能永久失去远程会见机会。\n        请注意时间长短，不要影响后面的狱友使用。\n        若您在通话过程中有任何问题，请及时联系狱警沟通解决。]]></string>
     <string name="call">呼叫</string>
+
+    <!-- 云信登录失败状态码对应 -->
+    <string name="account_pwd_error">帐号或者密码号错误</string>
+    <string name="server_busy">服务器繁忙</string>
+    <string name="network_error">网络出错，请检查网络</string>
+    <string name="time_out">请求超时，请稍后再试</string>
+    <string name="illegal_control">非法操作或没有权限</string>
+    <string name="account_disable">您的账号已被禁用</string>
+    <string name="kickout">被挤下线</string>
+
+    <!--Dialog-->
+    <string name="please_set_terminal_infor">请先设置终端信息</string>
+    <string name="to_setting">马上设置</string>
+    <string name="please_select_cancel_video_reason">请选择挂断本次会见的原因</string>
+    <string name="please_select_cancel_meeting_reason">请选择取消本次会见的原因</string>
+    <string name="check_other_status">正在连线...</string>
+    <string name="other_offline">对方不在线，请稍候再呼叫</string>
+    <string name="call_back">重新呼叫</string>
+    <!--版本更新-->
+    <string name="update_version_hint">狱务通监狱版更新</string>
+    <string name="new_version_colon">新版本：</string>
+    <string name="has_last_version">已经是最新版本</string>
+    <string name="download">马上更新</string>
+    <string name="check_updating">正在检测最新版本...</string>
+    <string name="ignore_version">忽略此版本</string>
+    <string name="download_failed">下载失败</string>
+    <!--系统设置-->
+    <string name="setting">设置</string>
+    <string name="end_setting">终端设置</string>
+    <string name="logout">注销</string>
+    <string name="check_update">检查更新</string>
+    <!-- vconf -->
+    <string name="vconf_shortNum">会议号码</string>
+    <string name="vconf_time">会议时间</string>
+    <string name="vconf_timeLen">会议时长</string>
+    <string name="vconf_info_title">会议信息</string>
+    <string name="vconf_convene">正在召集</string>
+    <string name="vconf_call">正在呼叫</string>
+    <string name="vconf_join">正在加入</string>
+    <string name="vconf_join_waitingTxt_p2p">请求与您通话</string>
+    <string name="vconf_join_waitingTxt_mul">邀请您进入会议</string>
+    <string name="vconf_audio_waiting">音频呼叫中</string>
+    <string name="vconf_QualityMeetings">视频质量会议</string>
+    <string name="vconf_Apply4AdministrativePrivileges">申请管理权限</string>
+    <string name="vconf_releaseAdministrativePrivileges">释放管理权限</string>
+    <string name="vconf_Apply4Speaker">申请发言</string>
+    <string name="vconf_StatisticalInformation">统计信息</string>
+    <string name="vconf_ExitConf">退出会议</string>
+    <string name="vconf_EndConf">结束会议</string>
+    <string name="vconf_flow_remind">电话应答将为您节省流量</string>
+    <string name="vconf_chooseJoinWay_3GInfo_mobile">在移动数据网络环境下会影响视音频质量，\n并产生手机流量，可选择电话方式入会</string>
+    <string name="vconf_chooseJoinWay_3GInfo_normal">在移动数据网络环境下会影响视音频质量，\n并产生手机流量</string>
+    <string name="vconf_tel_response">电话</string>
+    <string name="vconf_video_response">视频接听</string>
+    <string name="vconf_audio_response">音频接听</string>
+    <string name="vconf_answer">接听</string>
+    <string name="vconf_2g_unable_tel_join">在当前的网络下您不能进行音视频通话，请使用电话应答入会</string>
+    <string name="vconf_canceled">已取消</string>
+    <string name="vconf_rejected">已拒绝</string>
+    <string name="vconf_noresponse">无人应答</string>
+    <string name="vconf_unconnect">未接通</string>
+    <string name="vconf_sending_desktop">正在接收双流</string>
+    <string name="telephonereceiver_open_info">听筒模式已关</string>
+    <string name="telephonereceiver_close_info">听筒模式已开</string>
+    <string name="vconf_quit_msg">您确定退出会议吗？</string>
+    <string name="vconf_end_msg">您确定结束会议吗？</string>
+    <string name="vconf_quit">退出</string>
+    <string name="vconf_end">结束</string>
+    <string name="hang_up">挂断</string>
+    <string name="more_info">更多</string>
+    <string name="off">关</string>
+    <string name="on">开</string>
+
+    <!-- comm Text -->
+    <string name="ok">确定</string>
+    <string name="search">搜索</string>
+    <string name="definition">清晰度</string>
+    <string name="microphone">麦克风</string>
+    <string name="speaker">扬声器</string>
+    <string name="add_text">添加</string>
+
+    <string-array  name="rate_array">
+        <item>128</item>
+        <item>512</item>
+        <item>768</item>
+        <item>1024</item>
+        <!--<item>2048</item>-->
+        <!--<item>4096</item>-->
+        <!--<item>8192</item>-->
+    </string-array>
+    <string-array  name="cancel_video_reason">
+        <item>本次会见结束</item>
+        <item>提前结束本次会见</item>
+        <item>本次会见已超时</item>
+        <item>设备出现故障</item>
+        <item>临时出现突发情况</item>
+    </string-array>
+    <string-array  name="cancel_meeting_reason">
+        <item>申请会见的信息有误</item>
+        <item>犯人拒绝会见</item>
+        <item>系统分配有误</item>
+        <item>设备出现故障</item>
+        <item>临时出现突发情况</item>
+    </string-array>
 </resources>
