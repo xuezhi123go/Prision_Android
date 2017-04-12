@@ -56,9 +56,12 @@ public class SplashActivity extends Activity {
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 0://启动动画
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                     break;
                 case 1://跳转登录界面
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                     break;
