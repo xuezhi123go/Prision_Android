@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Prision" />
             <option value="$PROJECT_DIR$/base_lib_system" />
+            <option value="$PROJECT_DIR$/livenessLib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

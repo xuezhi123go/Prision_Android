@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Prision/Prision.iml" filepath="$PROJECT_DIR$/Prision/Prision.iml" />
       <module fileurl="file://$PROJECT_DIR$/Prision_Android.iml" filepath="$PROJECT_DIR$/Prision_Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/base_lib_system/base_lib_system.iml" filepath="$PROJECT_DIR$/base_lib_system/base_lib_system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/livenessLib/livenessLib.iml" filepath="$PROJECT_DIR$/livenessLib/livenessLib.iml" />
     </modules>
   </component>
 </project>
