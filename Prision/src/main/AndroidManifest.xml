@@ -3,6 +3,7 @@
     package="com.gkzxhn.prision">
 
     <application
+        android:name=".common.GKApplication"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:largeHeap="true"

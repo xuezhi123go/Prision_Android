@@ -209,6 +209,67 @@ public class VolleyUtils<T>
             e.printStackTrace();
         }
     }
+    /**
+     * PUT request
+     *
+     * @param url
+     * @param params
+     * @param onFinishedListener
+     */
+    public void patch(String url, final T params, final String tag, final OnFinishedListener<T> onFinishedListener) throws AuthFailureError
+    {
+        try
+        {
+            if (params instanceof JSONObject)
+            {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.PATCH, url, (JSONObject) params, getListener(onFinishedListener), getErrorListener(onFinishedListener))
+                {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError
+                    {
+//                        headers.put("Accept", "application/json");
+                        return tag == null ? new HashMap<String, String>() : getCusHeaders();
+                    }
+                };
+                request.setRetryPolicy(new DefaultRetryPolicy(0, 0, 0f));
+                SingleRequestQueue.getInstance().add(request, tag);
+            } else if (params instanceof JSONArray)
+            {
+                JsonArrayRequest request = new JsonArrayRequest(Request.Method.PUT, url, (JSONArray) params, getListener(onFinishedListener), getErrorListener(onFinishedListener))
+                {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError
+                    {
+//                        headers.put("Accept", "application/json");
+                        return tag == null ? new HashMap<String, String>() : getCusHeaders();
+                    }
+                };
+                request.setRetryPolicy(new DefaultRetryPolicy(0, 0, 0f));
+                SingleRequestQueue.getInstance().add(request, tag);
+            } else if (params instanceof Map)
+            {
+                StringRequest request = new StringRequest(Request.Method.PUT, url, getListener(onFinishedListener), getErrorListener(onFinishedListener))
+                {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError
+                    {
+                        return (Map<String, String>) params;
+                    }
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError
+                    {
+                        return tag == null ? new HashMap<String, String>() : getCusHeaders();
+                    }
+                };
+                request.setRetryPolicy(new DefaultRetryPolicy(0, 0, 0f));
+                SingleRequestQueue.getInstance().add(request, tag);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * DELETE request

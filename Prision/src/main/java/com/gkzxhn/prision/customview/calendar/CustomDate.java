@@ -39,9 +39,18 @@ public class CustomDate implements Serializable {
     }
     @Override
     public String toString() {
-        return year+"-"+month+"-"+day;
+        return year+"-"+getFomatterNumber(month)+"-"+getFomatterNumber(day);
     }
+    private String getFomatterNumber(int number){
+        String result=null;
+        if(number>9){
+            result=String.valueOf(number);
+        }else{
+            result="0"+number;
+        }
+        return result;
 
+    }
     public int getYear() {
         return year;
     }

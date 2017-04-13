@@ -29,7 +29,6 @@ public class LoginPresenter extends BasePresenter<IBaseModel,ILoginView>{
      * @param password
      */
     public void login(final String account, final String password){
-
         ILoginView view=mWeakView==null?null:mWeakView.get();
         if(view!=null)view.startRefreshAnim();
         LoginInfo info = new LoginInfo(account, password);

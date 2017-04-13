@@ -1,5 +1,7 @@
 package com.gkzxhn.prision.activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
@@ -12,14 +14,20 @@ import android.widget.TextView;
 
 import com.gkzxhn.prision.R;
 import com.gkzxhn.prision.adapter.MainAdapter;
+import com.gkzxhn.prision.adapter.OnItemClickListener;
 import com.gkzxhn.prision.common.Constants;
 import com.gkzxhn.prision.customview.calendar.CalendarCard;
 import com.gkzxhn.prision.customview.calendar.CalendarViewAdapter;
 import com.gkzxhn.prision.customview.calendar.CustomDate;
+import com.gkzxhn.prision.entity.MeetingEntity;
+import com.gkzxhn.prision.presenter.MainPresenter;
+import com.gkzxhn.prision.view.IMainView;
 import com.starlight.mobile.android.lib.view.CusSwipeRefreshLayout;
 import com.starlight.mobile.android.lib.view.dotsloading.DotsTextView;
 
-public class MainActivity extends SuperActivity implements CusSwipeRefreshLayout.OnRefreshListener {
+import java.util.List;
+
+public class MainActivity extends SuperActivity implements IMainView,CusSwipeRefreshLayout.OnRefreshListener {
     private TextView tvMonth;
     private ViewPager mViewPager;
     private CustomDate mDate;
@@ -28,6 +36,9 @@ public class MainActivity extends SuperActivity implements CusSwipeRefreshLayout
     private CusSwipeRefreshLayout mSwipeRefresh;
     private View ivNodata;
     private DotsTextView tvLoading;//加载动画
+    private MainPresenter mPresenter;
+    private ProgressDialog mProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +58,7 @@ public class MainActivity extends SuperActivity implements CusSwipeRefreshLayout
     private void init(){
         initCalander();
         adapter=new MainAdapter(this);
+        adapter.setOnItemClickListener(onItemClickListener);
         mSwipeRefresh.setColor(R.color.holo_blue_bright, R.color.holo_green_light,
                 R.color.holo_orange_light, R.color.holo_red_light);
         //设置加载模式，为只顶部上啦刷新
@@ -54,6 +66,13 @@ public class MainActivity extends SuperActivity implements CusSwipeRefreshLayout
         mSwipeRefresh.setLoadNoFull(false);
         mSwipeRefresh.setOnRefreshListener(this);
         mRecylerView.setAdapter(adapter);
+        //初始化进度条
+        mProgress = ProgressDialog.show(this, null, getString(R.string.please_waiting));
+        dismissProgress();
+        //请求数据
+        mPresenter=new MainPresenter(this,this);
+        onRefresh();
+
 
     }
     private void initCalander(){
@@ -72,6 +91,7 @@ public class MainActivity extends SuperActivity implements CusSwipeRefreshLayout
         @Override
         public void clickDate(CustomDate date) {
             mDate = date;
+            onRefresh();
 //            if ((date.getYear() + "年" + date.getMonth() + "月").equals(monthText.getText().toString())) {
 //                // 点击的是当月的
 ////                scrollView.scrollTo(0, 0);// 刷新时滑到顶端
@@ -105,7 +125,30 @@ public class MainActivity extends SuperActivity implements CusSwipeRefreshLayout
 
     @Override
     public void onRefresh() {
+        mPresenter.request(mDate.toString());
+    }
+    private OnItemClickListener onItemClickListener=new OnItemClickListener() {
+        @Override
+        public void onClickListener(View convertView, int position) {
+            switch (convertView.getId()){
+                case R.id.main_item_layout_tv_cancel:
+                    mPresenter.requestCancel(adapter.getItemsId(position));
+                    break;
+                default:
+                    Intent intent=new Intent(MainActivity.this,CallUserActivity.class);
+                    startActivityForResult(intent,Constants.EXTRA_CODE);
+                    break;
+            }
 
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==Constants.EXTRA_CODE&&resultCode==RESULT_OK){
+            onRefresh();
+        }
     }
 
     /**
@@ -144,4 +187,33 @@ public class MainActivity extends SuperActivity implements CusSwipeRefreshLayout
             }
         }
     };
+
+    @Override
+    public void showProgress() {
+        if(mProgress!=null&&!mProgress.isShowing())mProgress.show();
+    }
+
+    @Override
+    public void dismissProgress() {
+        if(mProgress!=null&&mProgress.isShowing())mProgress.dismiss();
+    }
+
+    @Override
+    public void updateItems(List<MeetingEntity> datas) {
+        adapter.updateItems(datas);
+
+    }
+
+    @Override
+    public void startRefreshAnim() {
+        handler.sendEmptyMessage(Constants.START_REFRESH_UI);
+
+    }
+
+    @Override
+    public void stopRefreshAnim() {
+        handler.sendEmptyMessage(Constants.STOP_REFRESH_UI);
+    }
+
+
 }

@@ -20,9 +20,27 @@ import java.util.List;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     private Context mContext;
     private List<MeetingEntity> mDatas=new ArrayList<>();
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        if (onItemClickListener != null && !onItemClickListener.equals("null"))
+            this.onItemClickListener = onItemClickListener;
+    }
+
     public MainAdapter(Context context){
         this.mContext=context;
 
+    }
+    public void updateItems(List<MeetingEntity> mDatas){
+        this.mDatas.clear();
+        if(mDatas!=null&&mDatas.size()>0){
+            this.mDatas=mDatas;
+        }
+        notifyDataSetChanged();
+
+    }
+    public String getItemsId(int positon){
+        return mDatas.get(positon).getId();
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,17 +49,28 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-//        MeetingEntity entity=mDatas.get(position);
-//        holder.tvName.setText(entity.getName());
-//        holder.tvTime.setText(entity.getTime());
-//        holder.tvArea.setText(entity.getArea());
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        MeetingEntity entity=mDatas.get(position);
+        holder.tvName.setText(entity.getName());
+        holder.tvTime.setText(entity.getTime());
+        holder.tvArea.setText(entity.getArea());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onItemClickListener!=null)onItemClickListener.onClickListener(v,position);
+            }
+        });
+        holder.tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onItemClickListener!=null)onItemClickListener.onClickListener(v,position);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-//        return mDatas.size();
-        return  10;
+        return mDatas.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
