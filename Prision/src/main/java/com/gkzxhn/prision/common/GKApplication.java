@@ -40,7 +40,7 @@ public class GKApplication extends Application{
         super.onCreate();
         application = this;
         NimInitUtil.initNim();// 云信SDK相关初始化及后续操作
-        KDInitUtil.init();// 科达SDK相关初始化及后续操作
+//        KDInitUtil.init();// 科达SDK相关初始化及后续操作
         initImageLoader();
     }
     private void initImageLoader(){
@@ -101,9 +101,9 @@ public class GKApplication extends Application{
 
     public void loginOff(){
         NIMClient.getService(AuthService.class).logout();
-        TruetouchGlobal.logOff();
+//        TruetouchGlobal.logOff();
         Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }

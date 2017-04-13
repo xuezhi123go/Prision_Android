@@ -35,7 +35,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class KDInitUtil {
-    public static String mAccount = "8080";
+    public static String mAccount = "9998";
     public static String mPassword = "";
     public static String mAddr = "222.244.146.206";
 

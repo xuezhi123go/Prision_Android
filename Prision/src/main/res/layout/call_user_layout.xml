@@ -68,7 +68,7 @@
         android:background="@drawable/common_blue_btn_selector"
         android:text="@string/call"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textSize="18sp"
         android:enabled="false"/>
 </LinearLayout>
 

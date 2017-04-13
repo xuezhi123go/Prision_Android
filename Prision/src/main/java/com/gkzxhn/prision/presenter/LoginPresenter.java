@@ -40,8 +40,8 @@ public class LoginPresenter extends BasePresenter<IBaseModel,ILoginView>{
                         ILoginView view=mWeakView==null?null:mWeakView.get();
                         if(view!=null) {
                             //登录科达GK
-                            if(mLoginKedaUtil==null)mLoginKedaUtil=new LoginKedaUtil();
-                            mLoginKedaUtil.login();
+//                            if(mLoginKedaUtil==null)mLoginKedaUtil=new LoginKedaUtil();
+//                            mLoginKedaUtil.login();
                             //保存登录信息
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString(Constants.USER_ACCOUNT,account);

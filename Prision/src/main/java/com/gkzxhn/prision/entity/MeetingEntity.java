@@ -1,14 +1,19 @@
 package com.gkzxhn.prision.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Raleigh.Luo on 17/4/11.
  */
 
 public class MeetingEntity {
     private String id;
+    @SerializedName("prisoner_name")
     private String name;
+    @SerializedName("meeting_time")
     private String time;
     private String area;
+    @SerializedName("to")
     private String yxAccount;
 
     public String getId() {

@@ -235,7 +235,7 @@ public class VolleyUtils<T>
                 SingleRequestQueue.getInstance().add(request, tag);
             } else if (params instanceof JSONArray)
             {
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.PUT, url, (JSONArray) params, getListener(onFinishedListener), getErrorListener(onFinishedListener))
+                JsonArrayRequest request = new JsonArrayRequest(Request.Method.PATCH, url, (JSONArray) params, getListener(onFinishedListener), getErrorListener(onFinishedListener))
                 {
                     @Override
                     public Map<String, String> getHeaders() throws AuthFailureError
@@ -248,7 +248,7 @@ public class VolleyUtils<T>
                 SingleRequestQueue.getInstance().add(request, tag);
             } else if (params instanceof Map)
             {
-                StringRequest request = new StringRequest(Request.Method.PUT, url, getListener(onFinishedListener), getErrorListener(onFinishedListener))
+                StringRequest request = new StringRequest(Request.Method.PATCH, url, getListener(onFinishedListener), getErrorListener(onFinishedListener))
                 {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError

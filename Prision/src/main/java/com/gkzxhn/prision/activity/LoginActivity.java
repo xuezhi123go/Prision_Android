@@ -21,6 +21,7 @@ public class LoginActivity  extends SuperActivity implements ILoginView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.login_layout);
         initControls();
         init();
     }

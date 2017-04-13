@@ -39,9 +39,10 @@ public class SplashActivity extends Activity {
         tvVersionName.setText( getString(R.string.app_v)+versionName);
 
         SharedPreferences preferences= getSharedPreferences(Constants.USER_TABLE, Activity.MODE_PRIVATE);
-        if(preferences.getBoolean(Constants.IS_FIRST_IN,true)) {
-            mHandler.sendEmptyMessageDelayed(0, SPLASH_DELAY_MILLIS);
-        }else if(preferences.getString(Constants.USER_ID,"").length()==0){//未登录 未认证
+//        if(preferences.getBoolean(Constants.IS_FIRST_IN,true)) {
+//            mHandler.sendEmptyMessageDelayed(0, SPLASH_DELAY_MILLIS);
+//        }else
+        if(preferences.getString(Constants.USER_ACCOUNT,"").length()==0){//未登录 未认证
             mHandler.sendEmptyMessageDelayed(1, SPLASH_DELAY_MILLIS);
         }else{//已登录
             mHandler.sendEmptyMessageDelayed(2, SPLASH_DELAY_MILLIS);

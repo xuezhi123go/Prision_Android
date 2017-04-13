@@ -3,6 +3,7 @@ package com.gkzxhn.prision.presenter;
 import android.content.Context;
 
 import com.android.volley.VolleyError;
+import com.gkzxhn.prision.R;
 import com.gkzxhn.prision.async.VolleyUtils;
 import com.gkzxhn.prision.entity.MeetingEntity;
 import com.gkzxhn.prision.model.IMainModel;
@@ -37,7 +38,10 @@ public class MainPresenter extends BasePresenter<IMainModel,IMainView> {
                     int code= ConvertUtil.strToInt(JSONUtil.getJSONObjectStringValue(response,"code"));
                     if(code== HttpStatus.SC_OK){
                         List<MeetingEntity> datas = new Gson().fromJson(JSONUtil.getJSONObjectStringValue(response,"meetings"),  new TypeToken<List<MeetingEntity>>() {}.getType());
-                        if(view!=null)view.updateItems(datas);
+                        if(view!=null){
+                            view.stopRefreshAnim();
+                            view.updateItems(datas);
+                        }
                     }else{
                     }
                 }catch (Exception e){ }
@@ -49,9 +53,33 @@ public class MainPresenter extends BasePresenter<IMainModel,IMainView> {
             }
         });
     }
-    public void requestCancel(String id){
+    public void requestCancel(String id,String reason){
         IMainView view=mWeakView==null?null:mWeakView.get();
         if(view!=null)view.showProgress();
+        mModel.requestCancel(id, reason,new VolleyUtils.OnFinishedListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                IMainView view=mWeakView==null?null:mWeakView.get();
+                if(view!=null){
+                    view.dismissProgress();
+                    view.showToast(R.string.canceled_meeting);
+                    view.onCanceled();
+                }
 
+            }
+
+            @Override
+            public void onFailed(VolleyError error) {
+                showErrors(error);
+            }
+        });
+
+    }
+
+    @Override
+    protected void stopAnim() {
+        super.stopAnim();
+        IMainView view=mWeakView==null?null:mWeakView.get();
+        if(view!=null)view.dismissProgress();
     }
 }

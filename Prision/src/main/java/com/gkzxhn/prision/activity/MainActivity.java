@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.gkzxhn.prision.R;
 import com.gkzxhn.prision.adapter.MainAdapter;
 import com.gkzxhn.prision.adapter.OnItemClickListener;
 import com.gkzxhn.prision.common.Constants;
+import com.gkzxhn.prision.customview.CancelVideoDialog;
 import com.gkzxhn.prision.customview.calendar.CalendarCard;
 import com.gkzxhn.prision.customview.calendar.CalendarViewAdapter;
 import com.gkzxhn.prision.customview.calendar.CustomDate;
@@ -38,6 +40,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
     private DotsTextView tvLoading;//加载动画
     private MainPresenter mPresenter;
     private ProgressDialog mProgress;
+    private CancelVideoDialog mCancelVideoDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,15 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
         //初始化进度条
         mProgress = ProgressDialog.show(this, null, getString(R.string.please_waiting));
         dismissProgress();
+        mCancelVideoDialog=new CancelVideoDialog(this,false);
+        mCancelVideoDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String reason=mCancelVideoDialog.getContent();
+                mCancelVideoDialog.dismiss();
+                mPresenter.requestCancel(adapter.getCurrentId(),reason);
+            }
+        });
         //请求数据
         mPresenter=new MainPresenter(this,this);
         onRefresh();
@@ -132,7 +144,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
         public void onClickListener(View convertView, int position) {
             switch (convertView.getId()){
                 case R.id.main_item_layout_tv_cancel:
-                    mPresenter.requestCancel(adapter.getItemsId(position));
+                    if(mCancelVideoDialog!=null&&!mCancelVideoDialog.isShowing())mCancelVideoDialog.show();
                     break;
                 default:
                     Intent intent=new Intent(MainActivity.this,CallUserActivity.class);
@@ -202,6 +214,11 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
     public void updateItems(List<MeetingEntity> datas) {
         adapter.updateItems(datas);
 
+    }
+
+    @Override
+    public void onCanceled() {
+        adapter.removeCurrentItem();
     }
 
     @Override

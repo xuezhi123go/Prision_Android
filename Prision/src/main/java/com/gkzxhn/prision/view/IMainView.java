@@ -12,4 +12,5 @@ public interface IMainView extends IBaseView{
     void showProgress();
     void dismissProgress();
     void updateItems(List<MeetingEntity> datas);
+    void onCanceled();
 }
