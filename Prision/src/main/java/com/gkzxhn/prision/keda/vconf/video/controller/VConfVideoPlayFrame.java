@@ -40,10 +40,6 @@ import com.kedacom.truetouch.video.player.VidGestureDetector;
 
 import java.io.IOException;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-
 /**
   * 视频播放界面
   * 

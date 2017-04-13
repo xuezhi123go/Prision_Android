@@ -17,7 +17,6 @@ import com.gkzxhn.prision.keda.sky.app.PcAppStackManager;
 import com.gkzxhn.prision.keda.utils.NetWorkUtils;
 import com.gkzxhn.prision.keda.utils.StringUtils;
 import com.gkzxhn.prision.keda.vconf.bean.VConf;
-import com.gkzxhn.prision.keda.vconf.controller.VConfAVResponseUI;
 import com.gkzxhn.prision.keda.vconf.controller.VConfDetailsUI;
 import com.gkzxhn.prision.keda.vconf.controller.VConfFunctionFragment;
 import com.gkzxhn.prision.keda.vconf.controller.VConfVideoUI;
@@ -120,11 +119,7 @@ public class VconfMtcCallback {
 
 			if (GKApplication.getInstance() != null) {
 				// 跳转到应答界面
-				Intent responseIntent = new Intent();
-				responseIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				responseIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				responseIntent.setClass(GKApplication.getInstance() , VConfAVResponseUI.class);
-				GKApplication.getInstance() .startActivity(responseIntent);
+
 			}
 		} else {
 			VConferenceManager.currTMtCallLinkSate = callLinkSate;
@@ -150,19 +145,6 @@ public class VconfMtcCallback {
 			if (VConferenceManager.isCSVConf()) {
 				VConferenceManager.switchVConfViewFromCallLinkSate();
 
-				VConfAVResponseUI avrResponesUI = (VConfAVResponseUI) PcAppStackManager.Instance().getActivity(VConfAVResponseUI.class);
-				if (null != avrResponesUI) {
-					//					avrResponesUI.releasMyFacingSV();
-					Boolean mIsAudioConf = avrResponesUI.ismIsAudioConf();
-					if (mIsAudioConf) {
-						VConferenceManager
-								.openVConfAudioUI(avrResponesUI, false, VConferenceManager.currTMtCallLinkSate.tPeerAlias.getAlias(), VConferenceManager.mCallPeerE164Num);
-					} else {
-						VConferenceManager
-								.openVConfVideoUI(avrResponesUI, false, VConferenceManager.currTMtCallLinkSate.tPeerAlias.getAlias(), VConferenceManager.mCallPeerE164Num);
-					}
-					avrResponesUI.finish();
-				}
 				// 修改自己的状态
 				LoginStateManager.imModifySelfStateReq();
 			}

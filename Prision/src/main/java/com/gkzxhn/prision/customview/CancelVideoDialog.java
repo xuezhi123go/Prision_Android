@@ -24,10 +24,6 @@ import com.starlight.mobile.android.lib.util.CommonHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Retrofit;
 import rx.schedulers.Schedulers;
 
 /**
