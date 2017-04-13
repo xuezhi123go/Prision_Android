@@ -126,7 +126,6 @@ public class SimpleGestureDetectorRelative extends RelativeLayout {
 	}
 
 	/**
-	 * @param mSimpleTouchListener the mSimpleTouchListener to set
 	 */
 	public void setOnSimpleTouchListener(ISimpleTouchListener simpleTouchListener) {
 		this.mSimpleTouchListener = simpleTouchListener;

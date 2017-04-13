@@ -24,7 +24,6 @@ import com.gkzxhn.prision.keda.utils.NetWorkUtils;
 import com.gkzxhn.prision.keda.utils.StringUtils;
 import com.gkzxhn.prision.keda.utils.TerminalUtils;
 import com.gkzxhn.prision.keda.vconf.bean.VConf;
-import com.gkzxhn.prision.keda.vconf.controller.VConfAVResponseUI;
 import com.gkzxhn.prision.keda.vconf.controller.VConfAudioUI;
 import com.gkzxhn.prision.keda.vconf.controller.VConfDetailsUI;
 import com.gkzxhn.prision.keda.vconf.controller.VConfVideoUI;
@@ -678,13 +677,7 @@ public class VConferenceManager {
 			VConferenceManager.nativeConfType = EmNativeConfType.AUDIO;
 		} else {
 			// 处于被叫界面
-			if (currActivity instanceof VConfAVResponseUI) {
-				if (((VConfAVResponseUI) currActivity).ismIsAudioConf()) {
-					VConferenceManager.nativeConfType = EmNativeConfType.AUDIO;
-				} else {
-					VConferenceManager.nativeConfType = EmNativeConfType.VIDEO;
-				}
-			}
+
 		}
 		if (currActivity instanceof VConfVideoUI) {
 			((VConfVideoUI) currActivity).switchVConfFragment();
@@ -827,10 +820,7 @@ public class VConferenceManager {
 	 */
 	public static void forceCloseVConfActivity() {
 		Activity currentActivity = PcAppStackManager.Instance().currentActivity();
-		// 接听界面是否存在
-		if (currentActivity instanceof VConfAVResponseUI) {
-			PcAppStackManager.Instance().popActivity(currentActivity);
-		}
+
 
 		VConfAudioUI vconfAudioUI = (VConfAudioUI) PcAppStackManager.Instance().getActivity(VConfAudioUI.class);
 		if (vconfAudioUI != null) {
