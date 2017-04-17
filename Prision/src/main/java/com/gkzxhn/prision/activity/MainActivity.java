@@ -131,6 +131,12 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
             case R.id.main_layout_btn_next://下一个月
                 mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
                 break;
+            case R.id.common_head_layout_iv_left:
+                startActivity(new Intent(this,SettingActivity.class));
+                break;
+            case R.id.common_head_layout_iv_right:
+                onRefresh();
+                break;
 
         }
     }
@@ -148,6 +154,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
                     break;
                 default:
                     Intent intent=new Intent(MainActivity.this,CallUserActivity.class);
+                    intent.putExtra(Constants.EXTRA,adapter.getCurrentId());
                     startActivityForResult(intent,Constants.EXTRA_CODE);
                     break;
             }

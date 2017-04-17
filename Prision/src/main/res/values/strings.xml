@@ -13,7 +13,7 @@
     <string name="request_timeout_with_try">请求超时，请重试</string>
     <string name="service_not_available">服务不可用，请稍后再试</string>
     <string name="not_available_network_hint">当前网络不可用，请检查网络设置</string>
-
+    <string name="operate_failed">操作失败，请稍后再试</string>
     <!--登录-->
     <string name="login">登录</string>
     <string name="please_input_user_infor">请输入用户信息</string>

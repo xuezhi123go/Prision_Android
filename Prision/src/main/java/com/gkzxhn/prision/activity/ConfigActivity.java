@@ -1,6 +1,7 @@
 package com.gkzxhn.prision.activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.gkzxhn.prision.R;
 import com.gkzxhn.prision.keda.utils.StringUtils;
@@ -47,5 +48,12 @@ public class ConfigActivity extends SuperActivity {
     }
     public void setH323PxyCfgCmdResult(final boolean isEnable){
         mLoginKedaUtil.setH323PxyCfgCmdResult(isEnable);
+    }
+    public void onClickListener(View view){
+        switch (view.getId()){
+            case R.id.common_head_layout_iv_left:
+                finish();
+                break;
+        }
     }
 }

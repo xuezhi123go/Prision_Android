@@ -33,16 +33,15 @@ public class MainPresenter extends BasePresenter<IMainModel,IMainView> {
         mModel.request(date, new VolleyUtils.OnFinishedListener<JSONObject>() {
             @Override
             public void onSuccess(JSONObject response) {
+                IMainView view=mWeakView==null?null:mWeakView.get();
+                if(view!=null)view.stopRefreshAnim();
                 try{
-                    IMainView view=mWeakView==null?null:mWeakView.get();
                     int code= ConvertUtil.strToInt(JSONUtil.getJSONObjectStringValue(response,"code"));
                     if(code== HttpStatus.SC_OK){
                         List<MeetingEntity> datas = new Gson().fromJson(JSONUtil.getJSONObjectStringValue(response,"meetings"),  new TypeToken<List<MeetingEntity>>() {}.getType());
                         if(view!=null){
-                            view.stopRefreshAnim();
                             view.updateItems(datas);
                         }
-                    }else{
                     }
                 }catch (Exception e){ }
 
@@ -60,11 +59,17 @@ public class MainPresenter extends BasePresenter<IMainModel,IMainView> {
             @Override
             public void onSuccess(String response) {
                 IMainView view=mWeakView==null?null:mWeakView.get();
+                if(view!=null)view.dismissProgress();
+                int code= ConvertUtil.strToInt(JSONUtil.getJSONObjectStringValue(JSONUtil.getJSONObject(response),"code"));
                 if(view!=null){
-                    view.dismissProgress();
-                    view.showToast(R.string.canceled_meeting);
-                    view.onCanceled();
+                    if(code== HttpStatus.SC_OK) {
+                        view.showToast(R.string.canceled_meeting);
+                        view.onCanceled();
+                    }else{
+                        view.showToast(R.string.operate_failed);
+                    }
                 }
+
 
             }
 

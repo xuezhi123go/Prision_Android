@@ -19,7 +19,6 @@ import java.util.Map;
 public class MainModel extends BaseModel implements IMainModel {
     @Override
     public void requestCancel(String id, String reason,VolleyUtils.OnFinishedListener<String> onFinishedListener) {
-        if(volleyUtils==null)volleyUtils=new VolleyUtils();
         String url= String.format("%s/%s",Constants.REQUEST_CANCEL_MEETING_URL, id);
         try {
             Map<String,String> params=new HashMap<String,String>();
@@ -32,7 +31,6 @@ public class MainModel extends BaseModel implements IMainModel {
 
     @Override
     public void request(String date,VolleyUtils.OnFinishedListener<JSONObject> onFinishedListener) {
-        if(volleyUtils==null)volleyUtils=new VolleyUtils();
         String terminalAccount=preferences.getString(Constants.TERMINAL_ACCOUNT,"");
         if(terminalAccount.length()==0)terminalAccount= KDInitUtil.mAccount;
         String url= String.format("%s/%s/meetings?application_date=%s",Constants.REQUEST_MEETING_LIST_URL,terminalAccount,date);

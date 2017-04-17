@@ -29,6 +29,8 @@ public class SettingActivity extends SuperActivity {
                 break;
             case R.id.setting_layout_tv_logout:
                 break;
+            case R.id.common_head_layout_iv_left:
+                break;
         }
 
     }

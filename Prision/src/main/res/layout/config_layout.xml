@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mAttr="http://schemas.android.com/apk/res-auto"
+
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <com.starlight.mobile.android.lib.view.CusHeadView
+        android:id="@+id/main_layout_ch_head"
+        style="@style/common_head_blue_style"
+        mAttr:chHead_title="@string/end_setting"
+        mAttr:chHead_title_padding_left="0dip"
+        mAttr:chHead_leftImg="@mipmap/ic_back"
+        />
 </LinearLayout>
