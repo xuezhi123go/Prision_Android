@@ -24,6 +24,10 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             />
+        <View android:layout_height="match_parent"
+            android:layout_width="1dip"
+            android:background="@color/common_line_color"
+            />
         <include layout="@layout/common_list_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

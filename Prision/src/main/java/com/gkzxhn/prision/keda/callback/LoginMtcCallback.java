@@ -290,7 +290,7 @@ public class LoginMtcCallback {
 				SharedPreferences sharedPreferences=GKApplication.getInstance().getSharedPreferences(Constants.USER_TABLE,Context.MODE_PRIVATE);
 				Editor editor=sharedPreferences.edit();
 				editor.putString(Constants.TERMINAL_ACCOUNT,KDInitUtil.mAccount);
-				editor.putInt(Constants.TERMINAL_ACCOUNT,VConferenceManager.callRate);
+				editor.putInt(Constants.TERMINAL_RATE,VConferenceManager.callRate);
 				editor.commit();
 				if (currActivity instanceof ConfigActivity){
 					ConfigActivity activity = (ConfigActivity) currActivity;

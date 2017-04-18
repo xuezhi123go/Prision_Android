@@ -30,6 +30,7 @@ public class SettingActivity extends SuperActivity {
             case R.id.setting_layout_tv_logout:
                 break;
             case R.id.common_head_layout_iv_left:
+                finish();
                 break;
         }
 
