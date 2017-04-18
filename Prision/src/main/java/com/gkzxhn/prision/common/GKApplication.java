@@ -101,7 +101,7 @@ public class GKApplication extends Application{
 
     public void loginOff(){
         NIMClient.getService(AuthService.class).logout();
-//        TruetouchGlobal.logOff();
+        TruetouchGlobal.logOff();
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
