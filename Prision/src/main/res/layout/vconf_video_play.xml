@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black" >
-
-    <com.pc.ui.layout.SimpleGestureDetectorRelative
+    <com.gkzxhn.prision.keda.layout.SimpleGestureDetectorRelative
         android:id="@+id/pic_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,7 +35,7 @@
             android:src="@mipmap/splash_tablet"
             android:scaleType="fitXY"
             android:visibility="gone"/>
-    </com.pc.ui.layout.SimpleGestureDetectorRelative>
+    </com.gkzxhn.prision.keda.layout.SimpleGestureDetectorRelative>
 
     <FrameLayout
         android:layout_width="match_parent"

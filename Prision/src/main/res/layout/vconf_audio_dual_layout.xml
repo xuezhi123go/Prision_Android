@@ -10,7 +10,7 @@
         android:layout_height="wrap_content" >
     </RelativeLayout>
 
-    <com.pc.ui.layout.SimpleGestureDetectorRelative
+    <com.gkzxhn.prision.keda.layout.SimpleGestureDetectorRelative
         android:id="@+id/play_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,6 +19,6 @@
         <include layout="@layout/vconf_video_sendingdesktop_layout" />
 
         <include layout="@layout/vconf_video_playview_layout" />
-    </com.pc.ui.layout.SimpleGestureDetectorRelative>
+    </com.gkzxhn.prision.keda.layout.SimpleGestureDetectorRelative>
 
 </FrameLayout>

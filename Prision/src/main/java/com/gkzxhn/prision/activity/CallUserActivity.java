@@ -124,22 +124,7 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
                     e.printStackTrace();
                 }
                 notification.setContent(json.toString());
-                NIMClient.getService(MsgService.class).sendCustomNotification(notification).setCallback(new RequestCallback<Void>() {
-                    @Override
-                    public void onSuccess(Void param) {
-                        showToast("onSuccess");
-                    }
-
-                    @Override
-                    public void onFailed(int code) {
-                        showToast("onFailed");
-                    }
-
-                    @Override
-                    public void onException(Throwable exception) {
-                        showToast("onException");
-                    }
-                });
+                NIMClient.getService(MsgService.class).sendCustomNotification(notification);
             } else {
                 showToast(R.string.network_error);
             }
