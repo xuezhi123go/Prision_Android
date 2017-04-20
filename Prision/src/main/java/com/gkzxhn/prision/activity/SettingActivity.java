@@ -32,7 +32,7 @@ public class SettingActivity extends SuperActivity implements IMainView{
         setContentView(R.layout.setting_layout);
         tvUpdateHint= (TextView) findViewById(R.id.setting_layout_tv_update_hint);
         mPresenter=new MainPresenter(this,this);
-        mPresenter.requestVersion();
+
     }
     public void onClickListener(View view){
         switch (view.getId()){
@@ -42,7 +42,7 @@ public class SettingActivity extends SuperActivity implements IMainView{
                 break;
             case R.id.setting_layout_tv_update:
                 tvUpdateHint.setText(R.string.check_updating);
-
+                mPresenter.requestVersion();
                 break;
             case R.id.setting_layout_tv_logout:
                 break;

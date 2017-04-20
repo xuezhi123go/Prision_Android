@@ -89,6 +89,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
         //请求数据
         mPresenter=new MainPresenter(this,this);
         onRefresh();
+        mPresenter.requestVersion();
 
 
     }
