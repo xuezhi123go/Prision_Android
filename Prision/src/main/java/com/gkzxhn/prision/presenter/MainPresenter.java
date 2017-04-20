@@ -6,6 +6,7 @@ import com.android.volley.VolleyError;
 import com.gkzxhn.prision.R;
 import com.gkzxhn.prision.async.VolleyUtils;
 import com.gkzxhn.prision.entity.MeetingEntity;
+import com.gkzxhn.prision.entity.VersionEntity;
 import com.gkzxhn.prision.model.IMainModel;
 import com.gkzxhn.prision.model.iml.MainModel;
 import com.gkzxhn.prision.view.IMainView;
@@ -79,6 +80,21 @@ public class MainPresenter extends BasePresenter<IMainModel,IMainView> {
             }
         });
 
+    }
+    public void requestVersion(){
+        mModel.requestVersion(new VolleyUtils.OnFinishedListener<JSONObject>() {
+            @Override
+            public void onSuccess(JSONObject response) {
+                int code= ConvertUtil.strToInt(JSONUtil.getJSONObjectStringValue(response,"code"));
+                if(code== HttpStatus.SC_OK){
+                    IMainView view=mWeakView==null?null:mWeakView.get();
+                    if(view!=null)view.updateVersion(new Gson().fromJson(response.toString(), VersionEntity.class));
+                }
+            }
+
+            @Override
+            public void onFailed(VolleyError error) {}
+        });
     }
 
     @Override

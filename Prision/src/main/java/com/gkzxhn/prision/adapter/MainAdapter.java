@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gkzxhn.prision.R;
+import com.gkzxhn.prision.entity.MeetingDetailEntity;
 import com.gkzxhn.prision.entity.MeetingEntity;
 
 import java.util.ArrayList;
@@ -45,8 +46,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
         notifyDataSetChanged();
 
     }
-    public String getCurrentId(){
-        return mDatas.get(mCurrentIndex).getId();
+
+
+    public MeetingEntity getCurrentItem(){
+        return mDatas.get(mCurrentIndex);
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

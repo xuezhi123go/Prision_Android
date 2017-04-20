@@ -9,6 +9,7 @@ import org.json.JSONObject;
  */
 
 public interface IMainModel extends IBaseModel {
+    void requestVersion(VolleyUtils.OnFinishedListener<JSONObject> onFinishedListener);
     void requestCancel(String id,String reason, VolleyUtils.OnFinishedListener<String> onFinishedListener);
-    public void request(String date, VolleyUtils.OnFinishedListener<JSONObject> onFinishedListener);
+    void request(String date, VolleyUtils.OnFinishedListener<JSONObject> onFinishedListener);
 }

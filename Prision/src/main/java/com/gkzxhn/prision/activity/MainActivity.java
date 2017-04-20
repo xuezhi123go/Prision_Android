@@ -2,6 +2,8 @@ package com.gkzxhn.prision.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
@@ -18,10 +20,12 @@ import com.gkzxhn.prision.adapter.MainAdapter;
 import com.gkzxhn.prision.adapter.OnItemClickListener;
 import com.gkzxhn.prision.common.Constants;
 import com.gkzxhn.prision.customview.CancelVideoDialog;
+import com.gkzxhn.prision.customview.UpdateDialog;
 import com.gkzxhn.prision.customview.calendar.CalendarCard;
 import com.gkzxhn.prision.customview.calendar.CalendarViewAdapter;
 import com.gkzxhn.prision.customview.calendar.CustomDate;
 import com.gkzxhn.prision.entity.MeetingEntity;
+import com.gkzxhn.prision.entity.VersionEntity;
 import com.gkzxhn.prision.presenter.MainPresenter;
 import com.gkzxhn.prision.view.IMainView;
 import com.starlight.mobile.android.lib.view.CusSwipeRefreshLayout;
@@ -41,6 +45,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
     private MainPresenter mPresenter;
     private ProgressDialog mProgress;
     private CancelVideoDialog mCancelVideoDialog;
+    private UpdateDialog updateDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +83,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
             public void onClick(View view) {
                 String reason=mCancelVideoDialog.getContent();
                 mCancelVideoDialog.dismiss();
-                mPresenter.requestCancel(adapter.getCurrentId(),reason);
+                mPresenter.requestCancel(adapter.getCurrentItem().getId(),reason);
             }
         });
         //请求数据
@@ -154,7 +159,9 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
                     break;
                 default:
                     Intent intent=new Intent(MainActivity.this,CallUserActivity.class);
-                    intent.putExtra(Constants.EXTRA,adapter.getCurrentId());
+                    intent.putExtra(Constants.EXTRA,adapter.getCurrentItem().getId());
+                    intent.putExtra(Constants.EXTRAS,adapter.getCurrentItem().getYxAccount());
+                    intent.putExtra(Constants.EXTRA_TAB,adapter.getCurrentItem().getName());
                     startActivityForResult(intent,Constants.EXTRA_CODE);
                     break;
             }
@@ -229,6 +236,37 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
     }
 
     @Override
+    public void updateVersion(VersionEntity version) {
+        //新版本
+        int newVersion = version.getVersionCode();
+        PackageManager pm = getPackageManager();
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = pm.getPackageInfo(getPackageName(),
+                    PackageManager.GET_CONFIGURATIONS);
+            int currentVersion=packageInfo.versionCode;//当前App版本
+            int lastIgnoreVersion= mPresenter.getSharedPreferences().getInt(Constants.LAST_IGNORE_VERSION,0);
+            boolean isIgoreVersion=lastIgnoreVersion==newVersion;//若是已忽略的版本，则不弹出升级对话框
+            if(version.isForce())isIgoreVersion=false;
+            if (newVersion > currentVersion&&!isIgoreVersion) {//新版本大于当前版本，则弹出更新下载到对话框
+                //版本名
+                String versionName =  version.getVersionName();
+                // 下载地址
+                String downloadUrl =  version.getDownloadUrl();
+                //是否强制更新
+                boolean isForceUpdate= version.isForce();
+                if(updateDialog==null)updateDialog=new UpdateDialog(this);
+                updateDialog.setForceUpdate(isForceUpdate);
+                updateDialog.setDownloadInfor(versionName,newVersion,downloadUrl);
+                updateDialog.show();//显示对话框
+            }
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void startRefreshAnim() {
         handler.sendEmptyMessage(Constants.START_REFRESH_UI);
 
@@ -239,5 +277,10 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
         handler.sendEmptyMessage(Constants.STOP_REFRESH_UI);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        if(mCancelVideoDialog!=null&&mCancelVideoDialog.isShowing())mCancelVideoDialog.dismiss();
+        if(updateDialog!=null&&updateDialog.isShowing())updateDialog.dismiss();
+        super.onDestroy();
+    }
 }

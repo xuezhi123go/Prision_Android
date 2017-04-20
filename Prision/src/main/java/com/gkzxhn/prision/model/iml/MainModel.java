@@ -18,6 +18,15 @@ import java.util.Map;
 
 public class MainModel extends BaseModel implements IMainModel {
     @Override
+    public void requestVersion(VolleyUtils.OnFinishedListener<JSONObject> onFinishedListener) {
+        try {
+            volleyUtils.get(JSONObject.class,Constants.REQUEST_VERSION_URL,REQUEST_TAG,onFinishedListener);
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+    }
+
+    @Override
     public void requestCancel(String id, String reason,VolleyUtils.OnFinishedListener<String> onFinishedListener) {
         String url= String.format("%s/%s",Constants.REQUEST_CANCEL_MEETING_URL, id);
         try {
@@ -39,4 +48,5 @@ public class MainModel extends BaseModel implements IMainModel {
             authFailureError.printStackTrace();
         }
     }
+
 }

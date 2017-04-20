@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -219,14 +220,10 @@ public class NimInitUtil {
                     JSONObject json=new JSONObject(content);
                     if(json.has("code")){
                         int code=Integer.valueOf(json.getString("code"));
-                        Activity currActivity = PcAppStackManager.Instance().currentActivity();
-                        if(currActivity instanceof CallUserActivity){
-                            CallUserActivity activity = (CallUserActivity) currActivity;
-                            if(code==-1){//呼叫
-                                activity.openVConfVideoUI();
-                            }else if(code==-2){//挂断
-                                activity.stopVConfVideo();
-                            }
+                        if(code==-1){//呼叫 连线成功
+                            GKApplication.getInstance().sendBroadcast(new Intent(Constants.ONLINE_SUCCESS_ACTION));
+                        }else if(code==-2){//挂断 联系失败
+                            GKApplication.getInstance().sendBroadcast(new Intent(Constants.ONLINE_FAILED_ACTION));
                         }
                     }
                 } catch (Exception e) {

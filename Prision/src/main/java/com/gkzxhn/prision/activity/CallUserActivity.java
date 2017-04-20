@@ -25,6 +25,7 @@ import com.gkzxhn.prision.keda.vconf.manager.VConferenceManager;
 import com.gkzxhn.prision.presenter.CallUserPresenter;
 import com.gkzxhn.prision.view.ICallUserView;
 import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
@@ -63,7 +64,7 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
         ivCard02= (ImageView) findViewById(R.id.call_user_layout_iv_card_02);
     }
     private void init(){
-        String id=getIntent().getStringExtra(Constants.EXTRA);
+//        String id=getIntent().getStringExtra(Constants.EXTRA);
         phone=getIntent().getStringExtra(Constants.EXTRAS);
         nickName=getIntent().getStringExtra(Constants.EXTRA_TAB);
         mProgress = ProgressDialog.show(this, null, getString(R.string.check_other_status));
@@ -79,7 +80,7 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
         });
         mPresenter=new CallUserPresenter(this,this);
         preferences=mPresenter.getSharedPreferences();
-        mPresenter.request(id);//请求详情
+        mPresenter.request(phone);//请求详情
     }
     public void openVConfVideoUI(){
         if(mTimer!=null)mTimer.cancel();
@@ -123,7 +124,22 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
                     e.printStackTrace();
                 }
                 notification.setContent(json.toString());
-                NIMClient.getService(MsgService.class).sendCustomNotification(notification);
+                NIMClient.getService(MsgService.class).sendCustomNotification(notification).setCallback(new RequestCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void param) {
+                        showToast("onSuccess");
+                    }
+
+                    @Override
+                    public void onFailed(int code) {
+                        showToast("onFailed");
+                    }
+
+                    @Override
+                    public void onException(Throwable exception) {
+                        showToast("onException");
+                    }
+                });
             } else {
                 showToast(R.string.network_error);
             }
@@ -196,7 +212,11 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
             if(intent.getAction().equals(Constants.TERMINAL_FAILED_ACTION)){//GK注册失败
                 showToast(R.string.GK_register_failed);
             }else if(intent.getAction().equals(Constants.TERMINAL_SUCCESS_ACTION)){// GK 注册成功
-               openVConfVideoUI();
+                openVConfVideoUI();
+            }else if(intent.getAction().equals(Constants.ONLINE_SUCCESS_ACTION)){
+                openVConfVideoUI();
+            }else if(intent.getAction().equals(Constants.ONLINE_FAILED_ACTION)){
+                stopVConfVideo();
             }
         }
     };
@@ -210,6 +230,8 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
         IntentFilter intentFilter=new IntentFilter();
         intentFilter.addAction(Constants.TERMINAL_FAILED_ACTION);
         intentFilter.addAction(Constants.TERMINAL_SUCCESS_ACTION);
+        intentFilter.addAction(Constants.ONLINE_FAILED_ACTION);
+        intentFilter.addAction(Constants.ONLINE_SUCCESS_ACTION);
         registerReceiver(mBroadcastReceiver,intentFilter);
     }
 

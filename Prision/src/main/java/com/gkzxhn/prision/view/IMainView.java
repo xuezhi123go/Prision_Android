@@ -1,6 +1,7 @@
 package com.gkzxhn.prision.view;
 
 import com.gkzxhn.prision.entity.MeetingEntity;
+import com.gkzxhn.prision.entity.VersionEntity;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface IMainView extends IBaseView{
     void dismissProgress();
     void updateItems(List<MeetingEntity> datas);
     void onCanceled();
+    void updateVersion(VersionEntity version);
 }

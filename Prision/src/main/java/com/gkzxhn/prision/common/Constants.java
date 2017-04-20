@@ -38,6 +38,7 @@ public interface Constants {
     final String REQUEST_MEETING_LIST_URL=DOMAIN_NAME_XLS+"/api/v1/terminals";//会见列表
     final String REQUEST_CANCEL_MEETING_URL=DOMAIN_NAME_XLS+"/api/v1/meetings";// 取消会见
     final String REQUEST_MEETING_DETAIL_URL=DOMAIN_NAME_XLS+"/api/v1/families";// 会见详情
+    final String REQUEST_VERSION_URL=DOMAIN_NAME_XLS+"/api/v1/versions/2";//版本更新
 
 
     /*-------------------------------msg what-------------------------------------------------*/
@@ -55,6 +56,8 @@ public interface Constants {
     final int RESIZE_REQUEST_CODE=0x105;
     final int EXTRAS_CODE=0x106;
     /*-------------------------------action-------------------------------------------------*/
-    final String TERMINAL_SUCCESS_ACTION="com.gkzxhn.prision.TERMINAL_SUCCESS";
-    final String TERMINAL_FAILED_ACTION="com.gkzxhn.prision.TERMINAL_FAILED";
+    final String TERMINAL_SUCCESS_ACTION="com.gkzxhn.prision.TERMINAL_SUCCESS";//注册终端成功
+    final String TERMINAL_FAILED_ACTION="com.gkzxhn.prision.TERMINAL_FAILED";//注册终端失败
+    final String ONLINE_FAILED_ACTION="com.gkzxhn.prision.ONLINE_FAILED_ACTION";//连线失败
+    final String ONLINE_SUCCESS_ACTION="com.gkzxhn.prision.ONLINE_SUCCESS_ACTION";//连线成功
 }
