@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">Prision_Android</string>
+    <string name="app_name">狱务通监狱版</string>
     <!--覆盖类库中的string-->
     <string name="take_photo">拍照</string>
     <string name="album">相册</string>
     <string name="cancel">取消</string>
     <!--common-->
+    <string name="save">保存</string>
     <string name="please_input">请输入</string>
     <string name="no_data">暂无数据</string>
     <string name="please_waiting">请稍候...</string>
@@ -73,6 +74,13 @@
     <string name="end_setting">终端设置</string>
     <string name="logout">注销</string>
     <string name="check_update">检查更新</string>
+    <string name="setting_terminal_infor">设置终端信息</string>
+    <string name="terminal_account">终端帐号</string>
+    <string name="rate">码率</string>
+    <string name="rate_colon">码率(K)\u0020</string>
+    <string name="please_input_terminal_account">请输入终端帐号</string>
+    <string name="alter_terminal_account_success">修改终端信息成功</string>
+
     <!-- vconf -->
     <string name="vconf_shortNum">会议号码</string>
     <string name="vconf_time">会议时间</string>

@@ -36,15 +36,7 @@
     <Button
         android:id="@+id/loign_layout_btn_login"
         android:text="@string/login"
-        android:background="@drawable/common_blue_btn_selector"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="20dip"
-        android:textSize="18sp"
-        android:onClick="onClickListener"
-        android:layout_marginRight="20dip"
-        android:textColor="@android:color/white"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dip"
-        android:layout_marginTop="20dp"/>
+        style="@style/common_blue_btn_style"
+        />
 
 </LinearLayout>

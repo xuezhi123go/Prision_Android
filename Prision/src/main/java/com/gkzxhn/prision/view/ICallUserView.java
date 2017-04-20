@@ -7,5 +7,5 @@ import com.gkzxhn.prision.entity.MeetingDetailEntity;
  */
 
 public interface ICallUserView extends IBaseView{
-    void onSuccess(MeetingDetailEntity entity);
+    void onSuccess();
 }

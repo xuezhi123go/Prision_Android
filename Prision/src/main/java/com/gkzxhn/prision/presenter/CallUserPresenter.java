@@ -20,7 +20,12 @@ import org.json.JSONObject;
  */
 
 public class CallUserPresenter extends BasePresenter<ICallUserModel,ICallUserView> {
-    public CallUserPresenter(Context context,  ICallUserView view) {
+    private MeetingDetailEntity entity;
+
+    public MeetingDetailEntity getEntity() {
+        return entity;
+    }
+    public CallUserPresenter(Context context, ICallUserView view) {
         super(context, new CallUserModel(), view);
     }
     public void request(String id){
@@ -33,7 +38,8 @@ public class CallUserPresenter extends BasePresenter<ICallUserModel,ICallUserVie
                 if(view!=null)view.stopRefreshAnim();
                 int code = ConvertUtil.strToInt(JSONUtil.getJSONObjectStringValue(response, "code"));
                 if (code == HttpStatus.SC_OK) {
-                    view.onSuccess(new Gson().fromJson(JSONUtil.getJSONObjectStringValue(response, "family"), MeetingDetailEntity.class));
+                    entity=new Gson().fromJson(JSONUtil.getJSONObjectStringValue(response, "family"), MeetingDetailEntity.class);
+                    view.onSuccess();
                 }
             }
 

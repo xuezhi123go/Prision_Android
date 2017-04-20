@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:mAttr="http://schemas.android.com/apk/res-auto"
-
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg_color"
+    >
     <com.starlight.mobile.android.lib.view.CusHeadView
-        android:id="@+id/main_layout_ch_head"
+        android:id="@+id/config_layout_ch_head"
         style="@style/common_head_blue_style"
         mAttr:chHead_title="@string/end_setting"
         mAttr:chHead_title_padding_left="0dip"
         mAttr:chHead_leftImg="@mipmap/ic_back"
         />
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/config_layout_tv_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/setting_terminal_infor"
+        android:textSize="14sp"
+        android:layout_below="@+id/config_layout_ch_head"
+        android:textColor="@color/common_text_color"
+        android:layout_margin="10dip"
+        />
+    <TextView
+        android:id="@+id/config_layout_tv_terminal_account_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/config_layout_et_account"
+        android:layout_alignBottom="@+id/config_layout_et_account"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip"
+        android:textColor="@color/common_text_color"
+        android:layout_marginLeft="10dip"
+        android:paddingRight="10dip"
+        android:textSize="20sp"
+        android:background="@android:color/white"
+        android:text="@string/terminal_account"
+        />
+
+    <EditText
+        android:id="@+id/config_layout_et_account"
+        android:layout_width="match_parent"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:lines="1"
+        android:ellipsize="end"
+        android:background="@android:color/white"
+        android:layout_toRightOf="@+id/config_layout_tv_terminal_account_title"
+        android:layout_below="@+id/config_layout_tv_notice"
+        android:hint="@string/please_input_terminal_account"
+        />
+
+
+    <TextView
+        android:id="@+id/config_layout_tv_rate_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip"
+        android:paddingTop="10dip"
+        android:paddingRight="10dip"
+        android:layout_marginTop="1dip"
+        android:paddingBottom="10dip"
+        android:layout_marginLeft="10dip"
+        android:textSize="20sp"
+        android:background="@android:color/white"
+        android:text="@string/rate_colon"
+        android:textColor="@color/common_text_color"
+        android:layout_below="@+id/config_layout_et_account"
+        />
+
+    <Spinner
+        android:id="@+id/config_layout_sp_rate"
+        android:layout_marginRight="10dip"
+        android:layout_alignTop="@+id/config_layout_tv_rate_title"
+        android:layout_alignBottom="@+id/config_layout_tv_rate_title"
+        android:textSize="20sp"
+        android:spinnerMode="dropdown"
+        android:overlapAnchor="false"
+        android:layout_toRightOf="@+id/config_layout_tv_rate_title"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:entries="@array/rate_array"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dip"
+        android:padding="10dip"
+        android:layout_alignTop="@+id/config_layout_tv_rate_title"
+        android:layout_alignBottom="@+id/config_layout_tv_rate_title"
+        android:src="@mipmap/down"
+        />
+
+    <Button
+        android:id="@+id/config_layout_btn_save"
+        android:layout_below="@+id/config_layout_tv_rate_title"
+        android:text="@string/save"
+        style="@style/common_blue_btn_style"/>
+</RelativeLayout>
