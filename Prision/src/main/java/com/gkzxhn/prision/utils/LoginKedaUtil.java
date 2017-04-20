@@ -1,6 +1,10 @@
 package com.gkzxhn.prision.utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.gkzxhn.prision.common.Constants;
+import com.gkzxhn.prision.common.GKApplication;
 import com.gkzxhn.prision.keda.sky.app.GKStateMannager;
 import com.gkzxhn.prision.keda.sky.app.LoginStateManager;
 import com.gkzxhn.prision.keda.utils.DNSParseUtil;
@@ -30,14 +34,14 @@ public class LoginKedaUtil {
                 setCancelH323PxyCfgCmd();
                 return;
             }
-            LoginStateManager.loginAps(KDInitUtil.mAccount, KDInitUtil.mPassword, KDInitUtil.mAddr);
+            LoginStateManager.loginAps(GKApplication.getInstance().getTerminalAccount(), GKApplication.getInstance().getTerminalPassword(), Constants.TERMINAL_ADDRESS);
         } else {
             Configure.setAudioPriorCfgCmd(KDInitUtil.isH323);
             new Thread(new Runnable() {
 
                 @Override
                 public void run() {
-                    String ip = DNSParseUtil.dnsParse(KDInitUtil.mAddr);
+                    String ip = DNSParseUtil.dnsParse(Constants.TERMINAL_ADDRESS);
                     // 解析成功，注册代理
                     long dwIp = 0;
                     try {
@@ -52,7 +56,7 @@ public class LoginKedaUtil {
                         return;
                     }
                     // 注册代理
-                    GKStateMannager.instance().registerGKFromH323(KDInitUtil.mAccount, KDInitUtil.mPassword, "");
+                    GKStateMannager.instance().registerGKFromH323(GKApplication.getInstance().getTerminalAccount(), GKApplication.getInstance().getTerminalPassword(), "");
                 }
             }).start();
         }
@@ -130,7 +134,7 @@ public class LoginKedaUtil {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    LoginStateManager.loginAps(KDInitUtil.mAccount, KDInitUtil.mPassword,KDInitUtil. mAddr);
+                    LoginStateManager.loginAps(GKApplication.getInstance().getTerminalAccount(), GKApplication.getInstance().getTerminalPassword(),Constants.TERMINAL_ADDRESS);
                 }
             }).start();
         } else {
@@ -145,7 +149,7 @@ public class LoginKedaUtil {
                         e.printStackTrace();
                     }
                     // 注册代理
-                    GKStateMannager.instance().registerGKFromH323(KDInitUtil.mAccount, KDInitUtil.mPassword, "");
+                    GKStateMannager.instance().registerGKFromH323(GKApplication.getInstance().getTerminalAccount(), GKApplication.getInstance().getTerminalPassword(), "");
                 }
             }).start();
 

@@ -40,6 +40,7 @@ public class SettingActivity extends SuperActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1&&resultCode==RESULT_OK){
             mResultCode=RESULT_OK;
+            showToast(R.string.alter_terminal_account_success);
         }
     }
 

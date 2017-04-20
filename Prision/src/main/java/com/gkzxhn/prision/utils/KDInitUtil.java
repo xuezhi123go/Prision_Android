@@ -35,10 +35,6 @@ import rx.schedulers.Schedulers;
  */
 
 public class KDInitUtil {
-    public static String mAccount = "9998";
-    public static String mPassword = "";
-    public static String mAddr = "222.244.146.206";
-
     private static final String TAG = KDInitUtil.class.getName();
     public static boolean isH323;// h323代理
     

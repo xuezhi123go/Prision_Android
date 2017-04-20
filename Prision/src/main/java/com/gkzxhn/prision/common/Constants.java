@@ -26,8 +26,10 @@ public interface Constants {
     final String USER_PASSWORD="user_password";//云信密码
     final String TERMINAL_ACCOUNT="terminal_account";//终端帐号
     final String TERMINAL_RATE="terminal_rate";//终端码率
+    final String TERMINAL_PASSWORD="terminal_password";//终端密码，空
     final String LAST_IGNORE_VERSION="last_ignore_version";//上一个忽略的版本
     final String OTHER_CARD="other_card";//身份证信息
+    final String TERMINAL_ADDRESS= "222.244.146.206";//科达服务器终端
     /*-------------------------------request url-------------------------------------------------*/
     final String RELEASE_DOMAIN="https://www.fushuile.com";//发布正式环境
     final String DEMO_DOMAIN="";//开发环境
@@ -52,5 +54,7 @@ public interface Constants {
     final int TAKE_PHOTO_CODE=0x104;
     final int RESIZE_REQUEST_CODE=0x105;
     final int EXTRAS_CODE=0x106;
-    /*-------------------------------静态变量-------------------------------------------------*/
+    /*-------------------------------action-------------------------------------------------*/
+    final String TERMINAL_SUCCESS_ACTION="com.gkzxhn.prision.TERMINAL_SUCCESS";
+    final String TERMINAL_FAILED_ACTION="com.gkzxhn.prision.TERMINAL_FAILED";
 }

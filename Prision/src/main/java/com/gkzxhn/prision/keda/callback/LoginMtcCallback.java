@@ -2,6 +2,7 @@ package com.gkzxhn.prision.keda.callback;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import com.gkzxhn.prision.keda.utils.NetWorkUtils;
 import com.gkzxhn.prision.keda.utils.StringUtils;
 import com.gkzxhn.prision.keda.vconf.manager.VConferenceManager;
 import com.gkzxhn.prision.utils.KDInitUtil;
+import com.gkzxhn.prision.utils.LoginKedaUtil;
 import com.google.gson.Gson;
 import com.kedacom.kdv.mt.api.Base;
 import com.kedacom.kdv.mt.api.Configure;
@@ -88,19 +90,9 @@ public class LoginMtcCallback {
 			LoginStateManager.restoreLoginState();
 			Base.logoutApsServerCmd();
 			Activity currActivity = PcAppStackManager.Instance().currentActivity();
-			KDInitUtil.mAccount = "";
-			if (currActivity instanceof ConfigActivity){
-				ConfigActivity activity = (ConfigActivity) currActivity;
-				activity.loginSuccess(false,"APS登录失败:" + apsErr);
-			}else if(currActivity instanceof CallUserActivity){
-				final int finalApsErr = apsErr;
-				new Handler(Looper.getMainLooper()).post(new Runnable() {
-					@Override
-					public void run() {
-						Toast.makeText(GKApplication.getInstance(), "APS登录失败:"+ finalApsErr, Toast.LENGTH_SHORT).show();
-					}
-				});
-			}
+			clearTerminal();
+//			Toast.makeText(GKApplication.getInstance(), "APS登录失败:"+ finalApsErr, Toast.LENGTH_SHORT).show();
+			GKApplication.getInstance().sendBroadcast(new Intent(Constants.TERMINAL_FAILED_ACTION));
 			return;
 		}
 
@@ -268,7 +260,6 @@ public class LoginMtcCallback {
 					MyMtcCallback.KEY_basetype);
 			boolean isSuccess = resultType == EmRegFailedReason.emRegSuccess.value;
 			boolean isH323 = KDInitUtil.isH323;
-			Activity currActivity = PcAppStackManager.Instance().currentActivity();
 			// GK 注册成功
 			if (isSuccess) {
 				GKStateMannager.mRegisterGK = true;
@@ -287,37 +278,16 @@ public class LoginMtcCallback {
 //				});
 
 				Log.i("Login", "注册GK成功");
-				SharedPreferences sharedPreferences=GKApplication.getInstance().getSharedPreferences(Constants.USER_TABLE,Context.MODE_PRIVATE);
-				Editor editor=sharedPreferences.edit();
-				editor.putString(Constants.TERMINAL_ACCOUNT,KDInitUtil.mAccount);
-				editor.putInt(Constants.TERMINAL_RATE,VConferenceManager.callRate);
-				editor.commit();
-				if (currActivity instanceof ConfigActivity){
-					ConfigActivity activity = (ConfigActivity) currActivity;
-					activity.loginSuccess(true,"");
-				}else if(currActivity instanceof CallUserActivity){
-					CallUserActivity activity = (CallUserActivity) currActivity;
-					activity.openVConfVideoUI();
-				}
+				GKApplication.getInstance().sendBroadcast(new Intent(Constants.TERMINAL_SUCCESS_ACTION));
 			} else {
-				KDInitUtil.mAccount = "";
+				clearTerminal();
 				new Handler(Looper.getMainLooper()).post(new Runnable() {
 
 					@Override
 					public void run() {
 						if (resultType != EmRegFailedReason.emUnRegSuc.value) {
-							Activity currActivity = PcAppStackManager.Instance().currentActivity();
-							if (currActivity instanceof ConfigActivity){
-								ConfigActivity activity = (ConfigActivity) currActivity;
-								activity.loginSuccess(false,"此终端号不可用，请重新设置");
-							}else if(currActivity instanceof CallUserActivity){
-								new Handler(Looper.getMainLooper()).post(new Runnable() {
-									@Override
-									public void run() {
-										Toast.makeText(GKApplication.getInstance(), "注册GK失败", Toast.LENGTH_SHORT).show();
-									}
-								});
-							}
+//							Toast.makeText(GKApplication.getInstance(), "注册GK失败", Toast.LENGTH_SHORT).show();
+							GKApplication.getInstance().sendBroadcast(new Intent(Constants.TERMINAL_FAILED_ACTION));
 						}
 					}
 				});
@@ -338,13 +308,10 @@ public class LoginMtcCallback {
 					Log.i("Login", "H323 注册GK成功");
 				} else {
 					Log.i("Login", "H323 注册GK失败" + resultType);
-					if (currActivity instanceof ConfigActivity) {
-						if (resultType != EmRegFailedReason.emUnRegSuc.value) {// 不用多次注销
-							ConfigActivity activity = (ConfigActivity) currActivity;
-							activity.loginSuccess(false,"错误码" + resultType);
-							// 注销gk，不然会一直注册
-							GKStateMannager.instance().unRegisterGK();
-						}
+					GKApplication.getInstance().sendBroadcast(new Intent(Constants.TERMINAL_FAILED_ACTION));
+					if (resultType != EmRegFailedReason.emUnRegSuc.value) {// 不用多次注销
+						// 注销gk，不然会一直注册
+						GKStateMannager.instance().unRegisterGK();
 					} else {
 						if (resultType == EmRegFailedReason.emRegNumberFull.value
 								|| resultType == EmRegFailedReason.emGKSecurityDenial.value) {
@@ -369,6 +336,14 @@ public class LoginMtcCallback {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	private static void clearTerminal(){
+		//注册失败，清除
+		SharedPreferences sharedPreferences=GKApplication.getInstance().getSharedPreferences(Constants.USER_TABLE,Context.MODE_PRIVATE);
+		Editor editor=sharedPreferences.edit();
+		editor.putString(Constants.TERMINAL_ACCOUNT,"");
+		editor.putInt(Constants.TERMINAL_RATE,512);
+		editor.commit();
 	}
 
 	/**
@@ -437,20 +412,10 @@ public class LoginMtcCallback {
 				Base.logoutApsServerCmd();
 				Log.i("Login", "LoginIm失败");
 				Activity currActivity = PcAppStackManager.Instance().currentActivity();
-				KDInitUtil.mAccount = "";
-				if(currActivity instanceof ConfigActivity) {
-					ConfigActivity activity = (ConfigActivity) currActivity;
-					activity.loginSuccess(false, "此终端号不可用，请重新设置");
-				}else if(currActivity instanceof CallUserActivity){
-					new Handler(Looper.getMainLooper()).post(new Runnable() {
-						@Override
-						public void run() {
-							Toast.makeText(GKApplication.getInstance(), "LoginIm失败", Toast.LENGTH_SHORT).show();
-						}
-					});
-				}else{
-					GKStateMannager.instance().registerGK();
-				}
+				clearTerminal();
+//				Toast.makeText(GKApplication.getInstance(), "LoginIm失败", Toast.LENGTH_SHORT).show();
+				GKApplication.getInstance().sendBroadcast(new Intent(Constants.TERMINAL_FAILED_ACTION));
+//					GKStateMannager.instance().registerGK();
 			}
 
 			// 修改自己的状态
@@ -527,10 +492,8 @@ public class LoginMtcCallback {
 		try {
 			long srvIp = jsonBodyObj.getLong("dwSrvIp");
 			boolean isEnable = jsonBodyObj.getBoolean("bEnable");
-			Activity currActivity = PcAppStackManager.Instance().currentActivity();
-			if (currActivity instanceof ConfigActivity) {
-				((ConfigActivity)currActivity).setH323PxyCfgCmdResult(isEnable);
-			}
+			LoginKedaUtil loginKedaUtil=new LoginKedaUtil();
+			loginKedaUtil.setH323PxyCfgCmdResult(isEnable);
 		} catch (Exception e) {
 
 		}

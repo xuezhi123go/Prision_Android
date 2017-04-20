@@ -119,7 +119,6 @@ public class VConferenceManager {
 
 	public static boolean isAES;//是否AES加密
 	public static int answerMode = 1;// 是否自动接听 0是，1否
-	public static int callRate = 512;//会议码率
 
 	/**
 	 * 会议结束时，清除会议相关数据
@@ -446,7 +445,7 @@ public class VConferenceManager {
 			return CALLRATE_SPLITLINE;
 		}
 
-		return callRate;
+		return GKApplication.getInstance().getTerminalRate();
 	}
 
 	/**

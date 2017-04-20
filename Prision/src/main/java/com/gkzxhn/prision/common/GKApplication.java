@@ -1,7 +1,9 @@
 package com.gkzxhn.prision.common;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 
 import com.gkzxhn.prision.R;
@@ -105,5 +107,17 @@ public class GKApplication extends Application{
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+    public String getTerminalAccount(){
+        SharedPreferences sharedPreferences= getSharedPreferences(Constants.USER_TABLE, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(Constants.TERMINAL_ACCOUNT,"");
+    }
+    public int getTerminalRate(){
+        SharedPreferences sharedPreferences= getSharedPreferences(Constants.USER_TABLE, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(Constants.TERMINAL_RATE,512);
+    }
+    public String getTerminalPassword(){
+        SharedPreferences sharedPreferences= getSharedPreferences(Constants.USER_TABLE, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(Constants.TERMINAL_PASSWORD,"");
     }
 }

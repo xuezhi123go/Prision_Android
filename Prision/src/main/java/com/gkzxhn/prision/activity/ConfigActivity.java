@@ -1,7 +1,10 @@
 package com.gkzxhn.prision.activity;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +15,7 @@ import android.widget.Spinner;
 
 import com.gkzxhn.prision.R;
 import com.gkzxhn.prision.common.Constants;
+import com.gkzxhn.prision.common.GKApplication;
 import com.gkzxhn.prision.keda.sky.app.GKStateMannager;
 import com.gkzxhn.prision.keda.utils.StringUtils;
 import com.gkzxhn.prision.keda.vconf.manager.VConferenceManager;
@@ -29,12 +33,14 @@ public class ConfigActivity extends SuperActivity {
     private String[] mRateArray;
     private String mRate=null;
     private ProgressDialog mProgress;
+    private SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_layout);
         initControls();
         init();
+        registerReceiver();
     }
     private void initControls(){
         etAccount= (EditText) findViewById(R.id.config_layout_et_account);
@@ -57,13 +63,13 @@ public class ConfigActivity extends SuperActivity {
             }
         });
         int index=1;
-        SharedPreferences preferences=getSharedPreferences(Constants.USER_TABLE, Context.MODE_PRIVATE);
+        preferences=getSharedPreferences(Constants.USER_TABLE, Context.MODE_PRIVATE);
         String account=preferences.getString(Constants.TERMINAL_ACCOUNT,"");
         if(account!=null&&account.length()>0) {
             etAccount.setText(account);
             for(int i = 0; i< mRateArray.length; i++){
                 String mRate= mRateArray[i];
-                if(mRate.equals(String.valueOf(VConferenceManager.callRate))){
+                if(mRate.equals(String.valueOf(GKApplication.getInstance().getTerminalRate()))){
                     index=i;
                     break;
                 }
@@ -71,35 +77,6 @@ public class ConfigActivity extends SuperActivity {
         }
         mRate = mRateArray[index];
         mSpinner.setSelection(index);
-    }
-    /* 登录成功
- * @param isSuccess
- * @param failedMsg
- */
-    public void loginSuccess(final boolean isSuccess, final String failedMsg){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                stopRefreshAnim();
-                if (isSuccess) {
-                    showToast(R.string.alter_terminal_account_success);
-                    setResult(RESULT_OK);
-                    finish();
-                    return;
-                }else {
-                    KDInitUtil.mAccount = "";
-                    VConferenceManager.callRate = 512;
-                    if (StringUtils.isNull(failedMsg)) {
-                        showToast(getString(R.string.login_failed));
-                    } else {
-                        showToast(failedMsg);
-                    }
-                }
-            }
-        });
-    }
-    public void setH323PxyCfgCmdResult(final boolean isEnable){
-        mLoginKedaUtil.setH323PxyCfgCmdResult(isEnable);
     }
     public void onClickListener(View view){
         switch (view.getId()){
@@ -114,8 +91,10 @@ public class ConfigActivity extends SuperActivity {
                     startRefreshAnim();
                     //退出终端平台，如果已经注册了终端平台
                     GKStateMannager.restoreLoginState();
-                    KDInitUtil.mAccount = acc;
-                    VConferenceManager.callRate =Integer.valueOf(mRate);
+                    SharedPreferences.Editor editor=preferences.edit();
+                    editor.putString(Constants.TERMINAL_ACCOUNT,acc);
+                    editor.putInt(Constants.TERMINAL_RATE,Integer.valueOf(mRate));
+                    editor.commit();
                     if(mLoginKedaUtil!=null)mLoginKedaUtil.login();
                 }
                 break;
@@ -127,5 +106,36 @@ public class ConfigActivity extends SuperActivity {
 
     public void stopRefreshAnim() {
         if(mProgress!=null&&mProgress.isShowing())mProgress.dismiss();
+    }
+    private BroadcastReceiver mBroadcastReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            stopRefreshAnim();
+            if(intent.getAction().equals(Constants.TERMINAL_FAILED_ACTION)){//GK注册失败
+                showToast(R.string.terminal_account_not_available);
+            }else if(intent.getAction().equals(Constants.TERMINAL_SUCCESS_ACTION)){// GK 注册成功
+
+                ConfigActivity.this.setResult(RESULT_OK);
+                ConfigActivity.this.finish();
+            }
+        }
+    };
+
+
+
+    /**
+     * 注册广播监听器
+     */
+    private void registerReceiver(){
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction(Constants.TERMINAL_FAILED_ACTION);
+        intentFilter.addAction(Constants.TERMINAL_SUCCESS_ACTION);
+        registerReceiver(mBroadcastReceiver,intentFilter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mBroadcastReceiver);//注销广播监听器
+        super.onDestroy();
     }
 }

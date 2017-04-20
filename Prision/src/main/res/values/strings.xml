@@ -80,6 +80,8 @@
     <string name="rate_colon">码率(K)\u0020</string>
     <string name="please_input_terminal_account">请输入终端帐号</string>
     <string name="alter_terminal_account_success">修改终端信息成功</string>
+    <string name="terminal_account_not_available">此终端可不用，请重新设置</string>
+    <string name="GK_register_failed">GK注册失败，请稍候重试</string>
 
     <!-- vconf -->
     <string name="vconf_shortNum">会议号码</string>

@@ -2,6 +2,10 @@ package com.gkzxhn.prision.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -51,6 +55,7 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
         setContentView(R.layout.call_user_layout);
         initControls();
         init();
+        registerReceiver();
     }
     private void initControls(){
         tvLoading= (DotsTextView) findViewById(R.id.common_loading_layout_tv_load);
@@ -184,5 +189,33 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
     public void stopProgress() {
         if(mProgress!=null&&mProgress.isShowing())mProgress.dismiss();
     }
+    private BroadcastReceiver mBroadcastReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            stopRefreshAnim();
+            if(intent.getAction().equals(Constants.TERMINAL_FAILED_ACTION)){//GK注册失败
+                showToast(R.string.GK_register_failed);
+            }else if(intent.getAction().equals(Constants.TERMINAL_SUCCESS_ACTION)){// GK 注册成功
+               openVConfVideoUI();
+            }
+        }
+    };
 
+
+
+    /**
+     * 注册广播监听器
+     */
+    private void registerReceiver(){
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction(Constants.TERMINAL_FAILED_ACTION);
+        intentFilter.addAction(Constants.TERMINAL_SUCCESS_ACTION);
+        registerReceiver(mBroadcastReceiver,intentFilter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mBroadcastReceiver);//注销广播监听器
+        super.onDestroy();
+    }
 }
