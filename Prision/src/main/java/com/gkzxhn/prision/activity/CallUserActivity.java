@@ -141,6 +141,12 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
         ImageLoader.getInstance().displayImage(Constants.DOMAIN_NAME_XLS + img_urls[0],ivCard01);
         ImageLoader.getInstance().displayImage(Constants.DOMAIN_NAME_XLS + img_urls[1],ivCard02);
         findViewById(R.id.call_user_layout_bt_call).setEnabled(true);
+        SharedPreferences.Editor editor=mPresenter.getSharedPreferences().edit();
+        editor.putString(Constants.OTHER_CARD+1,img_urls[0]);
+        editor.putString(Constants.OTHER_CARD+2,img_urls[1]);
+        editor.putString(Constants.OTHER_CARD+3,img_urls[2]);
+        editor.commit();
+
     }
     @Override
     public void startRefreshAnim() {
