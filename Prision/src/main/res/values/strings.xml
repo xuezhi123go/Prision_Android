@@ -39,6 +39,7 @@
     <string name="month">月</string>
     <string name="day">日</string>
     <string name="canceled_meeting">已取消会见</string>
+    <string name="no_meeting_data">暂无待会见名单</string>
     <!--远程会见-->
     <string name="remote_interview">远程会见</string>
     <string name="meeting_notice"><![CDATA[注意：\n        请确保视频内都是您的亲人，不是请及时告知狱警。\n        请注意通话不涉及犯罪、国家机密等内容，否则您将失去并可能永久失去远程会见机会。\n        请注意时间长短，不要影响后面的狱友使用。\n        若您在通话过程中有任何问题，请及时联系狱警沟通解决。]]></string>

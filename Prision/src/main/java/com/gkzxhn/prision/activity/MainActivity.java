@@ -63,7 +63,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
         tvLoading= (DotsTextView) findViewById(R.id.common_loading_layout_tv_load);
         ivNodata=findViewById(R.id.common_no_data_layout_iv_image);
         mSwipeRefresh= (CusSwipeRefreshLayout) findViewById(R.id.common_list_layout_swipeRefresh);
-
+        ((TextView)findViewById(R.id.common_no_data_layout_iv_hint)).setText(R.string.no_meeting_data);
     }
     private void init(){
         initCalander();
