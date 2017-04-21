@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.gkzxhn.prision.R;
+import com.gkzxhn.prision.common.GKApplication;
+import com.gkzxhn.prision.customview.CustomDialog;
 import com.gkzxhn.prision.customview.UpdateDialog;
 import com.gkzxhn.prision.entity.MeetingEntity;
 import com.gkzxhn.prision.entity.VersionEntity;
@@ -26,25 +28,38 @@ public class SettingActivity extends SuperActivity implements IMainView{
     private TextView tvUpdateHint;
     private MainPresenter mPresenter;
     private UpdateDialog updateDialog;
+    private CustomDialog mCustomDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_layout);
         tvUpdateHint= (TextView) findViewById(R.id.setting_layout_tv_update_hint);
         mPresenter=new MainPresenter(this,this);
-
+        mCustomDialog = new CustomDialog(this, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (view.getId() == R.id.custom_dialog_layout_tv_confirm) {
+                    GKApplication.getInstance().loginOff();
+                    finish();
+                }
+            }
+        });
+        mCustomDialog.setContent(getString(R.string.exit_account_hint),
+                getString(R.string.cancel),getString(R.string.ok));
     }
     public void onClickListener(View view){
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.setting_layout_tv_end_setting:
-                Intent intent=new Intent(this, ConfigActivity.class);
-                startActivityForResult(intent,1);
+                Intent intent = new Intent(this, ConfigActivity.class);
+                startActivityForResult(intent, 1);
                 break;
             case R.id.setting_layout_tv_update:
                 tvUpdateHint.setText(R.string.check_updating);
                 mPresenter.requestVersion();
                 break;
             case R.id.setting_layout_tv_logout:
+                if (mCustomDialog != null&&!mCustomDialog.isShowing())
+                    mCustomDialog.show();
                 break;
             case R.id.common_head_layout_iv_left:
                 setResult(mResultCode);
@@ -125,6 +140,7 @@ public class SettingActivity extends SuperActivity implements IMainView{
 
     @Override
     protected void onDestroy() {
+        if (mCustomDialog != null&&mCustomDialog.isShowing())   mCustomDialog.dismiss();
         if(updateDialog!=null&&updateDialog.isShowing())updateDialog.dismiss();
         super.onDestroy();
     }

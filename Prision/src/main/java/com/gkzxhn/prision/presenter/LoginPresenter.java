@@ -46,6 +46,7 @@ public class LoginPresenter extends BasePresenter<IBaseModel,ILoginView>{
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString(Constants.USER_ACCOUNT,account);
                             editor.putString(Constants.USER_PASSWORD,password);
+                            editor.putString(Constants.TERMINAL_ACCOUNT,account);
                             editor.commit();
                             //关闭加载条
                             view.startRefreshAnim();

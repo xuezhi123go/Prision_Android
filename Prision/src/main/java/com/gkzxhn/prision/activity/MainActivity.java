@@ -20,6 +20,7 @@ import com.gkzxhn.prision.adapter.MainAdapter;
 import com.gkzxhn.prision.adapter.OnItemClickListener;
 import com.gkzxhn.prision.common.Constants;
 import com.gkzxhn.prision.customview.CancelVideoDialog;
+import com.gkzxhn.prision.customview.ShowTerminalDialog;
 import com.gkzxhn.prision.customview.UpdateDialog;
 import com.gkzxhn.prision.customview.calendar.CalendarCard;
 import com.gkzxhn.prision.customview.calendar.CalendarViewAdapter;
@@ -46,6 +47,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
     private ProgressDialog mProgress;
     private CancelVideoDialog mCancelVideoDialog;
     private UpdateDialog updateDialog;
+    private ShowTerminalDialog mShowTerminalDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,7 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
         });
         //请求数据
         mPresenter=new MainPresenter(this,this);
-        onRefresh();
+
         mPresenter.requestVersion();
 
 
@@ -149,7 +151,16 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
 
     @Override
     public void onRefresh() {
-        mPresenter.request(mDate.toString());
+        //没有设置终端，则提示用户设置终端
+        if(mPresenter.getSharedPreferences().getString(Constants.TERMINAL_ACCOUNT,"").length()==0){
+            stopRefreshAnim();
+            if (mShowTerminalDialog == null) {
+                mShowTerminalDialog = new ShowTerminalDialog(this);
+            }
+            if (!mShowTerminalDialog.isShowing()) mShowTerminalDialog.show();
+        }else {
+            mPresenter.request(mDate.toString());
+        }
     }
     private OnItemClickListener onItemClickListener=new OnItemClickListener() {
         @Override
@@ -274,12 +285,19 @@ public class MainActivity extends SuperActivity implements IMainView,CusSwipeRef
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        onRefresh();
+    }
+
+    @Override
     public void stopRefreshAnim() {
         handler.sendEmptyMessage(Constants.STOP_REFRESH_UI);
     }
 
     @Override
     protected void onDestroy() {
+        if(mShowTerminalDialog!=null&&mShowTerminalDialog.isShowing())mShowTerminalDialog.dismiss();
         if(mCancelVideoDialog!=null&&mCancelVideoDialog.isShowing())mCancelVideoDialog.dismiss();
         if(updateDialog!=null&&updateDialog.isShowing())updateDialog.dismiss();
         super.onDestroy();

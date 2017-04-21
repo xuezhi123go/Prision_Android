@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/update_version_hint"
-            android:textColor="@color/common_gray_title_color"
+            android:textColor="@color/common_text_color"
             android:textSize="18sp" />
 
         <View

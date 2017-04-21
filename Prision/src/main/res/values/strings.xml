@@ -70,6 +70,8 @@
     <string name="ignore_version">忽略此版本</string>
     <string name="download_failed">下载失败</string>
     <!--系统设置-->
+
+    <string name="exit_account_hint">确定退出当前账号？</string>
     <string name="setting">设置</string>
     <string name="end_setting">终端设置</string>
     <string name="logout">注销</string>
