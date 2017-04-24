@@ -26,6 +26,7 @@ import com.gkzxhn.prision.presenter.CallUserPresenter;
 import com.gkzxhn.prision.view.ICallUserView;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.StatusCode;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
@@ -108,23 +109,27 @@ public class CallUserActivity extends SuperActivity implements ICallUserView{
         String account=preferences.getString(Constants.TERMINAL_ACCOUNT,"");
         if(account!=null&&account.length()>0) {
             if (NetWorkUtils.isAvailable(this)) {
-                startProgress();
-                //启动倒计时
-                mTimer.start();
-                //发送云信消息，检测家属端是否已经准备好可以呼叫
-                CustomNotification notification = new CustomNotification();
-                notification.setSessionId(mPresenter.getEntity().getAccid());
-                notification.setSessionType( SessionTypeEnum.P2P);
-                // 构建通知的具体内容。为了可扩展性，这里采用 json 格式，以 "id" 作为类型区分。
-                // 这里以类型 “1” 作为“正在输入”的状态通知。
-                JSONObject json = new JSONObject();
-                try {
-                    json.put("code", -1);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(mPresenter.checkStatusCode()== StatusCode.LOGINED) {
+                    startProgress();
+                    //启动倒计时
+                    mTimer.start();
+                    //发送云信消息，检测家属端是否已经准备好可以呼叫
+                    CustomNotification notification = new CustomNotification();
+                    notification.setSessionId(mPresenter.getEntity().getAccid());
+                    notification.setSessionType(SessionTypeEnum.P2P);
+                    // 构建通知的具体内容。为了可扩展性，这里采用 json 格式，以 "id" 作为类型区分。
+                    // 这里以类型 “1” 作为“正在输入”的状态通知。
+                    JSONObject json = new JSONObject();
+                    try {
+                        json.put("code", -1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    notification.setContent(json.toString());
+                    NIMClient.getService(MsgService.class).sendCustomNotification(notification);
+                }else{
+                    showToast(R.string.yunxin_offline);
                 }
-                notification.setContent(json.toString());
-                NIMClient.getService(MsgService.class).sendCustomNotification(notification);
             } else {
                 showToast(R.string.network_error);
             }

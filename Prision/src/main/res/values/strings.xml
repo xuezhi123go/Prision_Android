@@ -53,6 +53,7 @@
     <string name="illegal_control">非法操作或没有权限</string>
     <string name="account_disable">您的账号已被禁用</string>
     <string name="kickout">被挤下线</string>
+    <string name="yunxin_offline">帐号已掉线，正在重新登录中</string>
 
     <!--Dialog-->
     <string name="please_set_terminal_infor">请先设置终端信息</string>
