@@ -555,7 +555,7 @@ public class MaterialEditText extends AppCompatEditText {
     origin = scaleIcon(origin);
     iconBitmaps[0] = origin.copy(Bitmap.Config.ARGB_8888, true);
     Canvas canvas = new Canvas(iconBitmaps[0]);
-    canvas.drawColor(baseColor & 0x00ffffff | (com.starlight.mobile.android.lib.materialedittext.Colors.isLight(baseColor) ? 0xff000000 : 0x8a000000), PorterDuff.Mode.SRC_IN);
+    canvas.drawColor(baseColor & 0x00ffffff | (Colors.isLight(baseColor) ? 0xff000000 : 0x8a000000), PorterDuff.Mode.SRC_IN);
     iconBitmaps[1] = origin.copy(Bitmap.Config.ARGB_8888, true);
     canvas = new Canvas(iconBitmaps[1]);
     canvas.drawColor(primaryColor, PorterDuff.Mode.SRC_IN);
@@ -726,7 +726,7 @@ public class MaterialEditText extends AppCompatEditText {
   }
 
   private int getPixel(int dp) {
-    return com.starlight.mobile.android.lib.materialedittext.Density.dp2px(getContext(), dp);
+    return Density.dp2px(getContext(), dp);
   }
 
   private void initPadding() {
@@ -1209,7 +1209,7 @@ public class MaterialEditText extends AppCompatEditText {
    * @param validator Validator to add
    * @return This instance, for easy chaining
    */
-  public com.starlight.mobile.android.lib.materialedittext.MaterialEditText addValidator(METValidator validator) {
+  public MaterialEditText addValidator(METValidator validator) {
     if (validators == null) {
       this.validators = new ArrayList<>();
     }
