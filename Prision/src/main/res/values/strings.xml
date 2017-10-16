@@ -54,7 +54,8 @@
     <string name="account_disable">您的账号已被禁用</string>
     <string name="kickout">被挤下线</string>
     <string name="yunxin_offline">帐号已掉线，正在重新登录中</string>
-
+    <string name="connecting_yunxin">正在重连云信...</string>
+    <string name="login_yunxin">正在登录云信...</string>
     <!--Dialog-->
     <string name="please_set_terminal_infor">请先设置终端信息</string>
     <string name="to_setting">马上设置</string>
@@ -63,6 +64,15 @@
     <string name="check_other_status">正在连线...</string>
     <string name="other_offline">对方不在线，请稍候再呼叫</string>
     <string name="call_back">重新呼叫</string>
+    <string name="continue_call">继续呼叫</string>
+    <string name="cancel_record">取消录制</string>
+    <string name="not_found_tf_card_but_sd_free">未检测到TF卡，本次视频会话将录制到内置SD卡中</string>
+    <string name="not_found_tf_card">未检测到TF卡，内置SD卡存储容量不足，本次视频会话将不录制</string>
+
+    <string name="tf_card_not_root_but_sd_free">TF卡无法写入，本次视频会话将录制到内置SD卡中</string>
+    <string name="tf_card_not_root">TF卡无法写入，内置SD卡存储容量不足，本次视频会话将不录制</string>
+    <string name="tf_card_is_fill">TF卡存储容量不足，录制的视频可能无法写入，确定继续视频会话？</string>
+
     <!--版本更新-->
     <string name="update_version_hint">狱务通监狱版更新</string>
     <string name="new_version_colon">新版本：</string>
@@ -85,7 +95,10 @@
     <string name="please_input_terminal_account">请输入终端帐号</string>
     <string name="alter_terminal_account_success">修改终端信息成功</string>
     <string name="terminal_account_not_available">此终端可不用，请重新设置</string>
-    <string name="GK_register_failed">GK注册失败，请稍候重试</string>
+    <string name="GK_register_failed">网络异常，GK注册失败</string>
+    <string name="check_failed">验证失败</string>
+    <string name="delay_meeting_success">延长会议成功</string>
+    <string name="delay_meeting_failed">延长会议失败</string>
 
     <!-- vconf -->
     <string name="vconf_shortNum">会议号码</string>
@@ -157,7 +170,6 @@
         <item>申请会见的信息有误</item>
         <item>犯人拒绝会见</item>
         <item>系统分配有误</item>
-        <item>设备出现故障</item>
-        <item>临时出现突发情况</item>
+        <item>其他原因</item>
     </string-array>
 </resources>

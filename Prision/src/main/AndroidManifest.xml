@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gkzxhn.prision">
+    package="com.gkzxhn.prison">
 
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
@@ -83,7 +83,7 @@
         android:protectionLevel="normal" />
 
     <application
-        android:name=".common.GKApplication"
+        android:name="com.gkzxhn.prison.common.GKApplication"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:largeHeap="true"
@@ -92,7 +92,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity"
+        <activity android:name="com.gkzxhn.prison.activity.SplashActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
@@ -103,31 +103,31 @@
             </intent-filter>
         </activity>
         <!--主页-->
-        <activity android:name=".activity.MainActivity"
+        <activity android:name="com.gkzxhn.prison.activity.MainActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
             />
         <!--登录-->
-        <activity android:name=".activity.LoginActivity"
+        <activity android:name="com.gkzxhn.prison.activity.LoginActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
             />
         <!--登录-->
-        <activity android:name=".activity.CallUserActivity"
+        <activity android:name="com.gkzxhn.prison.activity.CallUserActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
             />
         <!--设置-->
-        <activity android:name=".activity.SettingActivity"
+        <activity android:name="com.gkzxhn.prison.activity.SettingActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
             />
         <!--终端设置-->
-        <activity android:name=".activity.ConfigActivity"
+        <activity android:name="com.gkzxhn.prison.activity.ConfigActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden|adjustPan"
@@ -189,24 +189,19 @@
             android:name="com.netease.cosine.target.receiver"
             android:value="com.netease.nimlib.service.NimReceiver"/>
 
-        <activity
-            android:name=".keda.main.VConfListActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".keda.vconf.controller.VConfDetailsUI"
-            android:screenOrientation="landscape" />
+
         <!-- vconf -->
         <activity
-            android:name=".keda.vconf.controller.VConfVideoUI"
+            android:name="com.gkzxhn.prison.keda.vconf.VConfVideoUI"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".keda.vconf.controller.VConfAudioUI"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="landscape" />
-        <service android:name=".keda.vconf.modle.service.VideoCapService"/>
+
+        <service android:name=".service.RecordServer"/>
+        <service android:name="com.gkzxhn.prison.keda.vconf.VideoCapService"/>
+        <service android:name="com.gkzxhn.prison.service.ScreenRecordService"/>
+        <!--<receiver android:name="com.gkzxhn.prison.receiver.USBStateReceiver"/>-->
+        <service android:name=".utils.RecordServer"/>
     </application>
 
 </manifest>

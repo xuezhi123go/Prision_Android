@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+
     signingConfigs {
         config {
             keyAlias 'gkzx'
@@ -10,13 +11,13 @@ android {
         }
     }
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '25.0.2'
     defaultConfig {
-        applicationId "com.gkzxhn.prision"
-        minSdkVersion 15
+        applicationId 'com.gkzxhn.prison'
+        minSdkVersion 18
         targetSdkVersion 22
-        versionCode 2
-        versionName '1.0.2'
+        versionCode 7
+        versionName '1.0.7'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters "armeabi-v7a"
@@ -35,6 +36,7 @@ android {
     }
     productFlavors {
     }
+
 }
 
 dependencies {
@@ -42,6 +44,18 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+//    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//        exclude group: 'com.android.support', module: 'appcompat'
+//        exclude group: 'com.android.support', module: 'support-v4'
+//        exclude group: 'com.android.support', module: 'appcompat-v7'
+//        exclude group: 'com.android.support', module: 'design'
+//        exclude module: 'recyclerview-v7'
+//    })
+//    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
+    //解决“com.android.support:support-annotations”冲突问题
+    androidTestCompile 'com.android.support:support-annotations:25.2.0'
     testCompile 'junit:junit:4.12'
     compile project(':base_lib_system')
     compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'

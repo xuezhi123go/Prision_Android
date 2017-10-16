@@ -63,5 +63,4 @@
         android:minWidth="60dip"
         android:scaleType="center"
         android:src="@drawable/vconf_hangup_selector" />
-
 </LinearLayout>

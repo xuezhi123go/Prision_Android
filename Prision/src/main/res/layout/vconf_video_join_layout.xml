@@ -11,11 +11,11 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true" >
 
-        <com.gkzxhn.prision.keda.vconf.controller.MyFacingView
+        <com.gkzxhn.prison.keda.vconf.MyFacingView
             android:id="@+id/myFace_sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-        </com.gkzxhn.prision.keda.vconf.controller.MyFacingView>
+        </com.gkzxhn.prison.keda.vconf.MyFacingView>
     </FrameLayout>
 
     <RelativeLayout

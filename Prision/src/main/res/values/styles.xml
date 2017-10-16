@@ -80,6 +80,8 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
+        <!--设置文字颜色-->
+        <item name="colorAccent">@color/common_text_color</item>
 
     </style>
 </resources>
